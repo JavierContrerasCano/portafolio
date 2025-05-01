@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Javier CC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <nav id="mainNav" class="transparent">
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#tecnologias">Habilidades</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+    <div id="hero">
+        <section id="stack-tecnologico">  
+        </div>    
+            <div class="categoria presentacion">
+            <center><h3><i class="fas fa-user"></i> ME PRESENTO</h3></center>
+                <div class="tecnologias descripcion">
+      <p>
+        👋 ¡Hola! Soy Javier.<br><br>
+        Apasionado por la informática y con muchas ganas de crecer en el mundo del desarrollo.  
+        Di un paso adelante en mi carrera estudiando <strong>Desarrollo de Aplicaciones Multiplataforma</strong> en <strong>ILERNA FP</strong>, donde aprendí a programar desde cero y descubrí que crear con código es lo que realmente me motiva.
+        <br><br>
+        Actualmente, estoy formandome en un curso de <strong>desarrollador SAP ABAP</strong> de 270 horas por la Junta de Andalucia e impartida por Seidor, con el objetivo de obtener mi certificación y de iniciar mi carrera profesional en este campo.
+        <br><br>
+        Aunque aún soy <strong>junior</strong>, tengo claro lo que quiero y estoy comprometido a seguir aprendiendo, aportar valor y crecer como parte de un equipo.
+        <br><br>
+        ¡Gracias por tu visita!<br><br>
+        Si deseas saber más sobre mí o ponerte en contacto, puedes hacerlo a través de:
+      </p>
+    </div>
+      <div class="botones-contacto">
+        <a href="https://www.linkedin.com/in/javiercontrerascano/" target="_blank" class="btn-contacto linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/JavierContrerasCano" target="_blank" class="btn-contacto github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:contrerascanojavier@gmail.com" class="btn-contacto email"><i class="fas fa-envelope"></i> Email</a>
+        <a href="cv.pdf" target="_blank" class="btn-contacto cv"><i class="fas fa-file-pdf"></i> Ver CV</a>
+      </div>
+    </div>
+ 
+
+    </section>
+
+    <div id="tecnologias">
+    <section id="stack-tecnologico">
+        <h2>Tecnologías</h2>
+        <p>Las herramientas y tecnologías que uso para dar vida a mis proyectos.</p>
+    </div>    
+        <div class="contenedor-stack">
+            <!-- Lenguajes -->
+            <div class="categoria">
+                <i class="fas fa-code"></i>
+                <h3>Lenguajes</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia" style="background-color: #ff6347">ABAP</div>
+                    <div class="tecnologia">JavaScript</div>
+                    <div class="tecnologia">Kotlin</div>
+                    <div class="tecnologia">JAVA</div>
+                    <div class="tecnologia">PHP</div>
+                </div>
+            </div>
+
+            <!-- Frontend -->
+            <div class="categoria">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Frontend</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia">HTML</div>
+                    <div class="tecnologia">CSS</div>
+                    <div class="tecnologia">XML</div>
+                </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="categoria">
+                <i class="fas fa-server"></i>
+                <h3>Backend</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia" style="background-color: #ff6347">ABAP</div>
+                    <div class="tecnologia" style="background-color: #ff6347">SAP NetWeaver</div>
+                </div>
+            </div>
+  
+            <!-- Herramientas -->
+            <div class="categoria">
+                <i class="fas fa-tools"></i> <!-- Icono de herramientas -->
+                <h3>Herramientas</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia" style="background-color: #ff6347">Eclipse / ABAP Development Tools (ADT)</div>
+                    <div class="tecnologia"style="background-color: #ff6347">SAP GUI</div>
+                    <div class="tecnologia">VS Code</div>
+                    <div class="tecnologia">Git</div>
+                </div>
+            </div>
+  
+            <!-- Testing -->
+            <div class="categoria">
+                <i class="fas fa-flask"></i> <!-- Icono de testing -->
+                <h3>Testing</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia" style="background-color: #ff6347">DEBUGGING (Herramientas y técnicas de depuración en SAP)</div>
+                </div>
+            </div>
+  
+            <!-- Base de datos -->
+            <div class="categoria">
+                <i class="fas fa-database"></i> <!-- Icono de base de datos -->
+                <h3>Base de datos</h3>
+                <div class="tecnologias">
+                    <div class="tecnologia" style="background-color: #ff6347">OPENSQL</div>
+                    <div class="tecnologia">MySQL</div>
+                    <div class="tecnologia">PostgreSQL</div>
+                    <div class="tecnologia">SQLite</div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="proyectos">
+    <section id="stack-tecnologico">
+        <h2>Proyectos</h2>
+    </div>    
+        <div class="contenedor-stack">
+            <div class="categoria">
+                <h3>Gestor de Pedidos</h3>
+                <p>Gestor de pedidos para una tienda de alimentación.</p>
+                <p>Proyecto final Desarrollo Aplicaciones Multiplataforma</p>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            <div class="categoria">
+                <h3>Gestor de Pedidos</h3>
+                <p>Gestor de pedidos para una tienda de alimentación.</p>
+                <p>Proyecto final Desarrollo Aplicaciones Multiplataforma</p>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            <div class="categoria">
+                <h3>En construcción</h3>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            <div class="categoria">
+                <h3>En construcción</h3>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            <div class="categoria">
+                <h3>En construcción</h3>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            <div class="categoria">
+                <h3>En construcción</h3>
+                <a href="#" target="_blank">Ver Proyecto</a>
+            </div>
+            
+        </div>
+    </section>
+    <div id="sobre-mi">
+    <section id="stack-tecnologico">  
+        <h2>Sobre Mí</h2>
+    </div>    
+        <div class="categoria presentacion">
+            <div class="tecnologias descripcion">
+                <p>
+                    Desde el principio de mi carrera, siempre supe que la informática era lo mío. Comencé con un FP de Grado Medio en <strong>Sistemas Microinformáticos y Redes</strong>, donde adquirí conocimientos en <strong>reparación de hardware</strong>, <strong>administración de sistemas</strong>, <strong>redes</strong> y <strong>mantenimiento de equipos informáticos</strong>. Este periodo fue clave porque me permitió adquirir las bases necesarias para entrar de lleno en el mundo de la informática.
+                </p>
+                <p>
+                    Durante mi formación, tuve la oportunidad de realizar mis prácticas, donde pude aplicar mis conocimientos en un entorno profesional. Aquí gestioné redes y equipos, lo que me dio una formación práctica invaluable y me permitió desarrollar habilidades clave en el ámbito informático.
+                </p>
+                <p>
+                    Mientras seguía buscando trabajo en el mundo de la informática, en 2013 surgió una oportunidad en <strong>LIDL Supermercados</strong>, donde estuve trabajando durante <strong>10 años y medio</strong>. Comencé como <strong>Cajero/Reponedor</strong>, realizando tareas como atención al cliente, gestión de inventarios, reposición de productos y manejo de caja. Durante estos años, adquirí experiencia en trato con el cliente, gestión de procesos y trabajo en equipo.
+                </p>
+                <p>
+                    Con el tiempo, comencé a realizar labores de <strong>Asistente de Tienda</strong>, donde mi función era coordinar el equipo, supervisar las operaciones diarias y colaborar en la organización de la tienda. Fue en <strong>2019</strong>, después de completar mi formación, cuando me ascendieron oficialmente al puesto de <strong>Asistente de Tienda</strong>. En este rol, me encargaba de supervisar el equipo de la tienda, coordinar las ventas, asegurarme de que todo funcionara correctamente y gestionar las operaciones del día a día. Esta experiencia me permitió desarrollar habilidades de liderazgo, toma de decisiones y gestión de recursos.
+                </p>
+                <p>
+                    A pesar de que mi carrera en LIDL fue exitosa, mi pasión por la informática nunca desapareció. En <strong>febrero de 2022</strong>, decidí darle un giro a mi carrera y me lancé a estudiar un <strong>Grado Superior de Desarrollo de Aplicaciones Multiplataforma</strong>, mientras seguía trabajando en LIDL. Fue un reto, pero sabía que debía formarme para hacer lo que realmente me apasionaba.
+                </p>
+                <p>
+                    En <strong>marzo de 2024</strong>, tomé la decisión de solicitar una <strong>excedencia</strong> en mi empresa para centrarme por completo en terminar mi proyecto final del FP y realizar mis prácticas. Fue una decisión difícil, pero necesaria para avanzar en mi carrera. En <strong>octubre de 2024</strong>, comencé mis prácticas en <strong>ISP GESTIÓN</strong>, donde adquirí experiencia en desarrollo web utilizando tecnologías como <strong>PHP</strong>, <strong>JavaScript</strong> y <strong>PostgreSQL</strong>.
+                </p>
+                <p>
+                    Al finalizar mis prácticas, tuve la oportunidad de comenzar una formación especializada en el entorno <strong>SAP ABAP NETWEAVER</strong>, gracias a un programa ofrecido por la <strong>Junta de Andalucía</strong> e impartido por <strong>Seidor</strong>. Actualmente, me encuentro en proceso de formación para obtener la <strong>certificación oficial</strong> y continuar desarrollando mi carrera en el ecosistema <strong>SAP</strong>, que es mi principal objetivo a largo plazo.
+                </p>
+                <p>
+                    En paralelo, sigo formándome en <strong>SAP ABAP</strong> y, como siguiente paso, estoy enfocado en mejorar mi nivel de <strong>inglés</strong> para ampliar mis oportunidades en el mundo laboral. A día de hoy, estoy en busca de nuevas oportunidades profesionales relacionadas con <strong>SAP ABAP</strong>, aunque también estoy abierto a otros roles. Lo importante para mí es seguir aprendiendo y creciendo en el mundo de la tecnología.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div id="experiencia">
+    <section id="stack-tecnologico">  
+        <h2>Experiencia Laboral</h2>
+    </div>    
+        <div class="categoria presentacion">
+            <div class="tecnologias descripcion">
+                
+                <div class="experiencia">
+                    <h3>LIDL España</h3>
+                    <strong>Puesto:</strong> Cajero/Reponedor (Jornada parcial) → Asistente de Tienda (Jornada completa)<br>
+                    <strong>Período:</strong> Octubre 2013 - Marzo 2024 (10 años y 6 meses)<br>
+                    <strong>Ubicación:</strong> Alcalá la Real, Andalucía, España (Presencial)<br>
+                    <strong>Tareas:</strong> Atención al cliente, reposición de productos, manejo de caja, gestión de stock, coordinación de equipo, supervisión de operaciones, organización de tienda, apoyo en ventas.<p>
+                </div>
+                
+                <div class="experiencia">
+                    <h3>ISP Gestión</h3>
+                    <strong>Puesto:</strong> Desarrollador Web (Contrato en prácticas)<br>
+                    <strong>Período:</strong> Octubre 2024 - Diciembre 2024 (3 meses)<br>
+                    <strong>Ubicación:</strong> Alcalá la Real, Andalucía, España (Presencial)<br>
+                    <strong>Tareas:</strong> Desarrollo web con PHP, JavaScript, HTML, CSS y PostgreSQL; mantenimiento de aplicaciones; implementación de funcionalidades; resolución de errores.<br>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    <div id="CERTIFICADOS">
+        <section id="stack-tecnologico">
+            <h2>Certificados</h2>
+        </div>    
+            <div class="contenedor-stack">
+                <!-- Lenguajes -->
+                <div class="categoria">
+                    <h3>Certificado SQL Interactivo</h3>
+                    <img src="39279_14112024.png" alt="Certificado SQL" class="certificado-imagen" onclick="openModal(this.src)">
+                    </div>
+                
+                    <div class="categoria">
+                    <h3>Certificado JavaScript Interactivo</h3>
+                    <img src="41897_03122024.png" alt="Certificado JS" class="certificado-imagen" onclick="openModal(this.src)">
+                    </div>
+                
+                    <div class="categoria">
+                    <h3>Certificado Análisis de Datos con Python</h3>
+                    <img src="certificate-595762809.jpg" alt="Certificado Python" class="certificado-imagen" onclick="openModal(this.src)">
+                    </div>
+                <div class="categoria">
+                    <h3>Certificado Desarrollo Aplicaciones Multiplataforma</h3>
+                    <img src="GS.jpg" alt="Certificado DAM" class="certificado-imagen" onclick="openModal(this.src)">
+                  </div>
+                  
+                  <div class="categoria">
+                    <h3>Certificado Sistemas Microinformáticos y Redes</h3>
+                    <img src="gm.jpg" alt="Certificado SMR" class="certificado-imagen" onclick="openModal(this.src)">
+                  </div>
+                  
+                  <!-- Modal -->
+                  <div id="modal" class="modal" onclick="closeModal()">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modal-img">
+                  </div>
+        </div>
+    </section>
+    <div id="contacto">
+    <section id="stack-tecnologico">
+        <h2>Contacto</h2>
+    </div> 
+    <div class="categoria presentacion">
+     <div class="formulario-container">
+            <form action="" method="post">
+                <div class="input-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Teléfono</label>
+                    <input type="telefono" id="telefono" name="telefono" placeholder="Teléfono" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+                </div>
+                <div class="input-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+                </div>
+                <div class="input-group">
+                    <button type="submit">Enviar mensaje</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Javier Contreras Cano</p>
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
