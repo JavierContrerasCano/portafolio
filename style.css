@@ -5,7 +5,6 @@
 }
 
 body {
-  margin: 0;
   font-family: 'JetBrains Mono', monospace;
   background: linear-gradient(to right, #b1b1ad, #4e4f50);
   color: #fff;
@@ -15,10 +14,10 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem; /* Espaciado lateral */
+  padding: 0 2rem;
 }
 
-/* Header fijo */
+/* HEADER */
 header {
   position: sticky;
   top: 0;
@@ -34,7 +33,6 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* centrado vertical */
   text-align: center;
   transition: background 0.5s ease, box-shadow 0.3s ease;
   padding: 1rem 2rem;
@@ -52,13 +50,10 @@ nav.scrolled {
 }
 
 nav h1 {
-  color: white;
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  text-align: center;
 }
 
-/* Menú de navegación */
 .nav-links {
   display: flex;
   justify-content: center;
@@ -66,7 +61,6 @@ nav h1 {
   gap: 2rem;
   flex-wrap: wrap;
   padding: 0;
-  margin: 0;
 }
 
 .nav-links li a {
@@ -84,23 +78,17 @@ nav h1 {
   color: #333;
 }
 
+/* HAMBURGER */
 .hamburger {
   display: none;
 }
 
-/* Menú en móvil */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
     flex-direction: column;
     cursor: pointer;
     margin-bottom: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   .hamburger span {
@@ -113,6 +101,8 @@ nav h1 {
 
   .nav-links {
     display: none;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .nav-links.active {
@@ -125,10 +115,6 @@ section {
   text-align: center;
 }
 
-.presentacion {
-  grid-column: span 3;
-}
-
 .descripcion p {
   text-align: justify;
   color: #3c3c3b;
@@ -136,6 +122,7 @@ section {
   margin-bottom: 2rem;
 }
 
+/* BOTONES */
 .botones-contacto {
   display: flex;
   flex-wrap: wrap;
@@ -147,11 +134,11 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  text-decoration: none;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
   font-weight: 600;
   font-size: 0.9rem;
+  text-decoration: none;
   transition: all 0.3s ease;
   color: white;
 }
@@ -160,54 +147,33 @@ section {
   font-size: 1rem;
 }
 
-/* Colores personalizados para cada botón */
-.btn-contacto.linkedin {
-  background-color: #1b1b1b;
-}
-
-.btn-contacto.linkedin:hover {
-  background-color: #ffdd57;
-}
-
-.btn-contacto.github {
-  background-color: #1b1b1b;
-}
-
-.btn-contacto.github:hover {
-  background-color: #ffdd57;
-}
-
-.btn-contacto.email {
-  background-color: #1b1b1b;
-}
-
-.btn-contacto.email:hover {
-  background-color: #ffdd57;
-}
-
+.btn-contacto.linkedin,
+.btn-contacto.github,
+.btn-contacto.email,
 .btn-contacto.cv {
   background-color: #1b1b1b;
 }
 
-.btn-contacto.cv:hover {
+.btn-contacto:hover {
   background-color: #ffdd57;
+  color: #333;
 }
 
+/* TITULOS */
 section h2 {
   font-size: 2.5rem;
   color: #ffdd57;
   margin-bottom: 1rem;
 }
 
-/* Stack de proyectos */
+/* STACK DE TECNOLOGÍAS */
 .contenedor-stack {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
-/* Categorías de proyectos */
 .categoria {
   background-color: #fff;
   padding: 2rem;
@@ -232,7 +198,7 @@ section h2 {
   margin-bottom: 1rem;
 }
 
-/* Tecnologías utilizadas */
+/* TECNOLOGÍAS */
 .tecnologias {
   display: flex;
   flex-wrap: wrap;
@@ -253,25 +219,25 @@ section h2 {
   background-color: #0056b3;
 }
 
-/* Grid de proyectos */
+/* GRID PROYECTOS */
 .proyecto {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
-/* Estilos para las imágenes de los proyectos */
+/* IMÁGENES */
 .certificado-imagen {
   width: 100%;
-  max-width: 300px;  /* Limita el tamaño máximo de la imagen */
-  height: auto;  /* Mantiene las proporciones de la imagen */
-  border-radius: 8px;  /* Redondea las esquinas */
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Modal de imágenes */
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -304,26 +270,14 @@ section h2 {
   cursor: pointer;
 }
 
-/* Recuadro del formulario */
-.formulario-container {
-  background-color: #ffffff; /* Fondo blanco para el recuadro */
-  padding: 2.5rem; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Recuadro del formulario */
+/* FORMULARIO */
 .formulario-container {
   background-color: #ffffff;
   padding: 2.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 form {
