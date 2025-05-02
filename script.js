@@ -21,3 +21,8 @@
     function closeModal() {
       document.getElementById("modal").style.display = "none";
     }
+
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("show");
+    }
