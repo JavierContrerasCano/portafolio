@@ -413,9 +413,9 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 1.00rem;
+  font-size: 1.05rem;
   align-self: center;
-  width: 28%;
+  width: 54%;
 }
 
 button:hover {
