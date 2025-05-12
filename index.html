@@ -40,7 +40,7 @@
       </div>
       <div class="botones-contacto">
         <a href="https://www.linkedin.com/in/javiercontrerascano/" target="_blank" class="btn-contacto linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/JavierContrerasCano" target="_blank" class="btn-contacto github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/JavierContrerasCano?tab=repositories" target="_blank" class="btn-contacto github"><i class="fab fa-github"></i> GitHub</a>
         <a href="mailto:contrerascanojavier@gmail.com" class="btn-contacto email"><i class="fas fa-envelope"></i> Email</a>
         <a href="cv.pdf" target="_blank" class="btn-contacto cv"><i class="fas fa-file-pdf"></i> Ver CV</a>
       </div>
@@ -125,18 +125,75 @@
   <section id="proyectos">
     <h2>Proyectos</h2>
     <div class="contenedor-stack">
+        <div class="categoria">
+          <h3>Gestor de Pedidos</h3>
+          <p>Gestor de pedidos para una tienda de alimentación realizado en kotlin con Android Studio. Proyecto final DAM.</p>
+    
+          <!-- Galería dinámica -->
+          <div class="galeria">
+            <img src="img\Proyectos\Proyecto1\portada.jpg" onclick="openLightbox(this)">
+            <img src="img\Proyectos\Proyecto1\diseño_menu.jpg" onclick="openLightbox(this)" >
+            <img src="img\Proyectos\Proyecto1\crearproductovacio1.jpg" onclick="openLightbox(this)">
+            <img src="img\Proyectos\Proyecto1\mostrarproducto3004 modi.jpg" onclick="openLightbox(this)">
+          </div>
+    
+          <!-- Enlace a GitHub 
+          <a href="https://github.com/tuusuario/tu-repo" target="_blank">Ver en GitHub</a>-->
+        </div>
+      
       <div class="categoria">
-        <h3>Gestor de Pedidos</h3>
-        <p>Gestor de pedidos para una tienda de alimentación. Proyecto final DAM.</p>
-        <a href="#">Ver Proyecto</a>
+        <h3>Gestor de Alumnos</h3>
+        <p>Gestor de alumnos en SAP / ABAP para la gestión de un alumno.</p>
+        <div class="galeria">
+          <img src="img/Proyectos/Proyecto2/ABAP1.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP2.jpg" onclick="openLightbox(this)" >
+          <img src="img/Proyectos/Proyecto2/ABAP3.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP5.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP4.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP6.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP7.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP8.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP9.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto2/ABAP10.jpg" onclick="openLightbox(this)">
+        </div>
+  
+        <!-- Enlace a GitHub -->
+        <a href="https://github.com/JavierContrerasCano/GestorAlumnos" target="_blank">Ver en GitHub</a>
       </div>
-      <!-- Repite o añade más según desarrolles más proyectos -->
+      
       <div class="categoria">
-        <h3>En construcción</h3>
-        <a href="#">Ver Proyecto</a>
+        <h3>Gestor de Cursos</h3>
+        <p>Gestor de Cursos en SAP / ABAP para la gestión de Cursos.</p>
+        <div class="galeria">
+          <img src="img/Proyectos/Proyecto3/ABAP1.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP2.jpg" onclick="openLightbox(this)" >
+          <img src="img/Proyectos/Proyecto3/ABAP3.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP5.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP4.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP6.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP7.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP8.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP9.jpg" onclick="openLightbox(this)">
+          <img src="img/Proyectos/Proyecto3/ABAP10.jpg" onclick="openLightbox(this)">
+         
+    </div>
+       
+     <a href="https://github.com/JavierContrerasCano/GestorCursosSAP-ABAP" target="_blank">Ver en GitHub</a>
+   
+    
       </div>
     </div>
+  <!-- Lightbox moderno -->
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-content">
+    <span class="close" onclick="cerrarLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
+    <div class="arrow left" onclick="cambiarImagen(-1)">&#10094;</div>
+    <div class="arrow right" onclick="cambiarImagen(1)">&#10095;</div>
+  </div>
+</div>
   </section>
+
 
   <!-- EXPERIENCIA -->
   <section id="experiencia">
@@ -148,12 +205,18 @@
           <p><strong>Puesto:</strong> Cajero/Reponedor → Asistente de Tienda<br>
           <strong>Período:</strong> Octubre 2013 - Marzo 2024<br>
           <strong>Ubicación:</strong> Alcalá la Real, Andalucía<br>
-          <strong>Tareas:</strong> Atención al cliente, stock, caja, gestión de equipo y tienda.</p>
-        </div>
-        <div class="experiencia">
+          <strong>Tareas:</strong> 
+          Cobro en caja y reposición de mercancía.
+          Responsable de turno. Asignación de tareas a los
+          trabajadores. Control de calidad y frescura. Encargado de
+          Caja fuerte en turno. Realización de inventarios en tienda.
+          Gestión de devoluciones de clientes y proveedores
+          Reposición de mercancía. Corrección de Precios.
+          Realización de pedidos.</p>
           <h3>ISP Gestión</h3>
-          <p><strong>Puesto:</strong> Desarrollador Web (Prácticas)<br>
-          <strong>Período:</strong> Octubre 2024 - Diciembre 2024<br>
+          <p><strong>Puesto:</strong>Desarrollador Web (Prácticas)<br>
+          <strong>Período:</strong>Octubre 2024 - Diciembre 2024<br>
+          <strong>Ubicación:</strong>Alcalá la Real, Andalucía<br>
           <strong>Tareas:</strong> Desarrollo web con PHP, JS, HTML, PostgreSQL, etc.</p>
         </div>
       </div>
@@ -164,11 +227,11 @@
   <section id="CERTIFICADOS">
     <h2>Certificados</h2>
     <div class="contenedor-stack">
-      <div class="categoria"><h3>SQL Interactivo</h3><img src="39279_14112024.png" class="certificado-imagen" onclick="openModal(this.src)" alt="SQL Certificado"></div>
-      <div class="categoria"><h3>JavaScript Interactivo</h3><img src="41897_03122024.png" class="certificado-imagen" onclick="openModal(this.src)" alt="JS Certificado"></div>
-      <div class="categoria"><h3>Análisis de Datos con Python</h3><img src="certificate-595762809.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="Python Certificado"></div>
-      <div class="categoria"><h3>DAM</h3><img src="GS.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="DAM Certificado"></div>
-      <div class="categoria"><h3>SMR</h3><img src="gm.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="SMR Certificado"></div>
+      <div class="categoria"><h3>SQL Interactivo</h3><img src="img\Certificados\39279_14112024.png" class="certificado-imagen" onclick="openModal(this.src)" alt="SQL Certificado"></div>
+      <div class="categoria"><h3>JavaScript Interactivo</h3><img src="img\Certificados\41897_03122024.png" class="certificado-imagen" onclick="openModal(this.src)" alt="JS Certificado"></div>
+      <div class="categoria"><h3>Análisis de Datos con Python</h3><img src="img\Certificados\certificate-595762809.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="Python Certificado"></div>
+      <div class="categoria"><h3>DAM</h3><img src="img\Certificados\gs.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="DAM Certificado"></div>
+      <div class="categoria"><h3>SMR</h3><img src="img\Certificados\GM.jpg" class="certificado-imagen" onclick="openModal(this.src)" alt="SMR Certificado"></div>
     </div>
 
     <!-- Modal -->
@@ -178,7 +241,7 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- CONTACTO 
   <section id="contacto">
     <h2>Contacto</h2>
     <div class="formulario-container">
@@ -203,8 +266,51 @@
       </form>
     </div>
   </section>
+-->
+
+
+
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="formulario-container">
+      <form id="form-contacto">
+        <input type="hidden" name="_captcha" value="false">
+  
+        <div class="input-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        </div>
+  
+        <div class="input-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Tu teléfono">
+        </div>
+  
+        <div class="input-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" required placeholder="Tu correo electrónico">
+        </div>
+  
+        <div class="input-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Tu mensaje"></textarea>
+        </div>
+  
+        <button type="submit">Enviar</button>
+      </form>
+  
+      <p id="mensaje-exito" style="display:none; color:green; margin-top:10px;">
+        ✅ Email enviado correctamente.
+      </p>
+    </div>
+  </section>
 
 </div>
+
+
+
+
 
 </body>
 </html>
