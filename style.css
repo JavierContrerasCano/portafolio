@@ -415,7 +415,8 @@ button {
   transition: background-color 0.3s ease;
   font-size: 1.10rem;
   align-self: center;
-  width: 100%;
+  width: 50%;
+  word-wrap: break-word;
 }
 
 button:hover {
@@ -424,6 +425,13 @@ button:hover {
 
 button:active {
   background-color: #004085;
+}
+/* MEDIA QUERY PARA AJUSTAR EL TAMAÑO EN MÓVILES */
+@media (max-width: 600px) {
+  button {
+    font-size: 1rem; /* Reducir el tamaño de la fuente */
+    padding: 0.75rem 1rem; /* Ajustar el padding */
+  }
 }
 
 footer {
