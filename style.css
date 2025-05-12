@@ -415,7 +415,7 @@ button {
   transition: background-color 0.3s ease;
   font-size: 1.10rem;
   align-self: center;
-  width: 60%;
+  width: 100%;
 }
 
 button:hover {
