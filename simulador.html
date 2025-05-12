@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Examen SAP C_TAW12_750</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+#quiz-container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#quiz-container h2 {
+  font-size: 1.2em;
+}
+#options {
+  margin: 15px 0;
+}
+.option-label {
+  display: block;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.option-label input {
+  margin-right: 8px;
+}
+#feedback {
+  font-weight: bold;
+  margin: 15px 0;
+}
+.correct {
+  color: green;
+}
+.wrong {
+  color: red;
+}
+button {
+  font-size: 1em;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+#checkBtn {
+  background-color: #007BFF;
+  color: #fff;
+}
+#nextBtn {
+  background-color: #28a745;
+  color: #fff;
+}
+#nextBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+</style>
+</head>
+<body>
+
+<div id="quiz-container">
+  <div id="progress"></div>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <div id="feedback"></div>
+  <button id="checkBtn">Ver solución</button>
+  <button id="nextBtn">Siguiente pregunta</button>
+</div>
+
+<script>  
+var questions = [
+  {
+    "question": "Selecciona la sentencia de mensaje definida por el cliente válida:",
+    "options": [
+      "MESSAGE Y123.",
+      "MESSAGE E123 (9999).",
+      "MESSAGE ID 'AT' TYPE 'S' NUMBER 100",
+      "MESSAGE E123 by Fielda Fieldb"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sucede cuando se encuentra una relación de uno a muchos con un inner join (unión interna)?",
+    "options": [
+      "Los datos redundantes no se devuelven al conjunto de resultados",
+      "Se incluyen datos redundantes de la tabla externa",
+      "Error en tiempo de ejecución",
+      "Se incluyen datos redundantes de la tabla interna"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué debe asignarse a los parámetros de ayuda?",
+    "options": [
+      "Elemento de datos",
+      "Dominio",
+      "Valores",
+      "Nada"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué contiene la variable del sistema sy-linsz?",
+    "options": [
+      "Recuento de filas de la línea actual",
+      "Altura de la línea actual",
+      "Ancho de la línea actual",
+      "Tamaño de las barras verticales en tu lista"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "Identifica el número de línea que causará la ruptura para AT NEW CONNECTION:",
+    "options": [
+      "Todas las filas causarán una ruptura",
+      "20",
+      "30",
+      "Ninguna fila causará una ruptura"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿En qué línea aparece la salida 'AAAA' en el siguiente código?",
+    "options": [
+      "9",
+      "2",
+      "1",
+      "10"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué determina si una tabla es específica de cliente o independiente de cliente?",
+    "options": [
+      "El primer campo es MANDT con un tipo de datos externo",
+      "CLNT y especificado como campo clave",
+      "Depende de cómo Basis ha configurado el cliente",
+      "La opción 'Client Specified' se agrega a la sentencia SELECT. El primer campo es MANDT con un dominio CLNT pero no especificado como campo clave"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es cierto sobre el índice primario de una tabla? (Más de una respuesta es correcta)",
+    "options": [
+      "El índice primario se crea automáticamente cuando se activa la tabla",
+      "Los campos clave de la tabla conforman el índice primario",
+      "El ID del índice primario lo designa el administrador de base de datos",
+      "El desarrollador designa los campos que se usarán como índice primario"
+    ],
+    "answers": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "question": "¿Los encabezados de página por defecto se crean en qué tipo de lista?",
+    "options": [
+      "Todas las listas",
+      "Básica",
+      "Secundaria"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "Identifica el tipo de diccionario del campo calog utilizado para el control ALV:",
+    "options": [
+      "Fieldcat",
+      "Calog",
+      "alv_calog",
+      "lcv_t_fcat"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "El programa A ejecuta la siguiente sentencia SUBMIT PROGRAM B. ¿Qué sucede?",
+    "options": [
+      "El programa A se activa en la misma sesión interna del programa B",
+      "El programa B se activa en la misma sesión interna del programa A",
+      "El contexto de usuario se vacía",
+      "El programa B se ejecuta en una nueva sesión interna"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Cuáles son métodos válidos para incluir elementos de texto en tu programa? (Más de una respuesta es correcta)",
+    "options": [
+      "Write: 'Hello'(001)",
+      "Write: TEXT-001",
+      "Write: 001(Hello)",
+      "Write: TEXT-001'Hello'"
+    ],
+    "answers": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "question": "Refiérase a lo siguiente. Si no hay entradas en my-b, ¿cuál es el resultado?",
+    "options": [
+      "Error en tiempo de ejecución",
+      "Se recuperan todas las entradas",
+      "Sólo valores distintos para key1",
+      "No se recuperan entradas"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "Al escribir una lista, ¿qué comando te permite sobrescribir una línea?",
+    "options": [
+      "Back",
+      "Overtype",
+      "Reserve",
+      "Write:/ 1"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué condiciones se aplican para una unión externa izquierda en Open SQL?",
+    "options": [
+      "Sólo se puede usar ‘OR’ como operador lógico en la condición ON",
+      "No se permite una unión externa izquierda en Open SQL",
+      "Una sentencia JOIN se encuentra a la derecha del operador JOIN",
+      "Al menos un campo de la tabla de la derecha es requerido para comparación en la condición ON"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué proporciona una LDB (base de datos lógica)? (Más de una respuesta es correcta)",
+    "options": [
+      "Interfaz de usuario coherente y flexible",
+      "Un método para acceder a los datos de forma aleatoria",
+      "Comprobaciones de autorización definidas centralmente",
+      "Mejoras de rendimiento centralizadas para accesos de actualización"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué se necesita para asegurar que un campo de verificación sea validado contra el campo clave referenciado de la tabla de verificación?",
+    "options": [
+      "Solo se requiere el mismo tipo de datos para el campo de verificación y el campo referenciado",
+      "Todos los campos clave DEBEN tener igualdad de dominio entre la tabla de verificación y la tabla de clave externa",
+      "Se requiere el mismo dominio para el campo de verificación y el campo referenciado",
+      "Se requiere el mismo elemento de datos para el campo de verificación y el campo referenciado"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "Selecciona un ejemplo de dato organizativo:",
+    "options": [
+      "Pedido de venta",
+      "Claves de país",
+      "Centros de coste",
+      "Proveedores"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "Identifica los atributos válidos de un dominio. (Más de una respuesta es correcta)",
+    "options": [
+      "Cabecera",
+      "Etiqueta",
+      "Longitud",
+      "Valores fijos",
+      "Tipo"
+    ],
+    "answers": [
+      "C",
+      "D",
+      "E"
+    ]
+  },
+  {
+    "question": "Para componentes de programa llamados que son del tipo transacción o reporte, ¿qué es cierto sobre el área de intercambio (roll area), asumiendo que el procesamiento se reanudará en el programa que llama?",
+    "options": [
+      "Comparten la misma área de intercambio",
+      "Se ejecutan en su propia área de intercambio",
+      "Se ejecutan en el área de intercambio del que llama"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuáles son las funciones principales del diccionario de datos? (Más de una respuesta es correcta)",
+    "options": [
+      "Aislar al desarrollador ABAP/4 de la base de datos",
+      "Proporcionar seguridad de datos a nivel de aplicación",
+      "Conectarse al sistema operativo",
+      "Apoyar la creación y gestión de metadatos"
+    ],
+    "answers": [
+      "A",
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué es cierto sobre SAP Query?",
+    "options": [
+      "Los usuarios sólo pueden acceder a los campos asignados a un grupo funcional",
+      "Se genera un registro maestro de usuario cuando se define la query",
+      "El usuario SAP sólo puede asignarse a un único grupo de usuarios",
+      "El Área Funcional puede ser una vista especial de una base de datos lógica"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "Los programas que se extienden más allá de los límites de transacción y quieren pasar datos deben usar:",
+    "options": [
+      "Memoria SAP",
+      "Tablas",
+      "Memoria ABAP/4"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿En qué casos usamos el evento AT SELECTION-SCREEN OUTPUT?",
+    "options": [
+      "Para validar campos de entrada al enviar la pantalla de selección",
+      "Para modificar dinámicamente la pantalla de selección antes de su visualización",
+      "Para capturar la entrada del usuario después de la ejecución del reporte",
+      "Para inicializar los valores de los parámetros antes de mostrar la pantalla"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál NO es un componente de la pantalla de selección (selection screen)?",
+    "options": [
+      "Bloques (BLOCK)",
+      "Elementos de selección (SELECT-OPTIONS)",
+      "Parámetros (PARAMETERS)",
+      "Títulos (TITLE)"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿En qué parte de un programa de reporte interactivo se pueden definir las condiciones de selección de datos?",
+    "options": [
+      "Entre eventos START-OF-SELECTION y END-OF-SELECTION",
+      "En la pantalla de selección, antes de START-OF-SELECTION",
+      "Dentro del evento AT LINE-SELECTION",
+      "Después del evento END-OF-PAGE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de los siguientes es un tipo de mensaje que no detiene la ejecución del programa?",
+    "options": [
+      "E (Error)",
+      "A (Abend)",
+      "W (Warning)",
+      "X (Exit)"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para verificar si una tabla interna está vacía?",
+    "options": [
+      "IF itab IS INITIAL.",
+      "IF itab IS NOT INITIAL.",
+      "IF LINES(itab) EQ 0.",
+      "DESCRIBE TABLE itab LINES."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia principal entre un índice único y un índice no único en ABAP Dictionary?",
+    "options": [
+      "Un índice único no permite valores duplicados en las columnas clave, mientras que un índice no único sí.",
+      "Un índice único mejora el rendimiento de lectura, el no único mejora el de escritura.",
+      "No existe diferencia: ambos tipos de índices funcionan igual.",
+      "El índice único se crea automáticamente, el no único se debe crear manualmente."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué permite la instrucción TABLES en un programa ABAP?",
+    "options": [
+      "Declarar una tabla interna.",
+      "Acceder a una tabla de la base de datos en modo lectura y modificación.",
+      "Crear una estructura de datos con el mismo nombre que una tabla de base de datos.",
+      "Vincular un programa de reporte con una base de datos lógica."
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Cuál de los siguientes eventos se utiliza para inicializar los valores de la pantalla de selección antes de mostrarla al usuario?",
+    "options": [
+      "INITIALIZATION",
+      "AT SELECTION-SCREEN",
+      "START-OF-SELECTION",
+      "LOAD-OF-PROGRAM"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el efecto de la instrucción LEAVE TO LIST-PROCESSING?",
+    "options": [
+      "Finaliza el programa actual y muestra la lista generada hasta el momento.",
+      "Interrumpe la generación de la lista actual y vuelve a la lista de nivel superior.",
+      "No tiene efecto en programas de reporte interactivos.",
+      "Inicia la visualización del listado en modo de proceso de listas."
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué función tiene un *matchcode* (Search Help) en SAP?",
+    "options": [
+      "Resaltar coincidencias de texto en un reporte",
+      "Ofrecer ayuda de búsqueda de valores para un campo",
+      "Validar el formato de entrada de un campo",
+      "Ninguna, ya no se utilizan en SAP"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes es una sentencia válida para leer un registro específico de una tabla interna?",
+    "options": [
+      "READ TABLE itab INDEX 5.",
+      "READ itab INDEX 5.",
+      "READ TABLE itab INTO <estructura> WITH KEY campo = valor.",
+      "READ TABLE itab TRANSPORTING NO FIELDS INDEX 1."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué ocurre si una tabla transparent tiene el primer campo con el componente MANDT (mandante) y clave primaria en ABAP Dictionary?",
+    "options": [
+      "La tabla será automáticamente específica de mandante (cliente).",
+      "La tabla será independiente de mandante.",
+      "El primer campo MANDT es ignorado en la clave primaria.",
+      "Debe añadirse la cláusula CLIENT SPECIFIED en cada SELECT."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué objeto de desarrollo ABAP se utiliza para definir una estructura (estructura de datos) en el Diccionario de Datos?",
+    "options": [
+      "Tabla transparente",
+      "Vista de base de datos",
+      "Estructura (Structure)",
+      "Tipo de Datos (Data Element)"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "En una selección de datos usando SELECT-OPTIONS en un reporte ABAP, ¿qué evento se utiliza para modificar dinámicamente la pantalla de selección antes de desplegarla al usuario?",
+    "options": [
+      "AT SELECTION-SCREEN",
+      "INITIALIZATION",
+      "AT SELECTION-SCREEN OUTPUT",
+      "START-OF-SELECTION"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué es un *lock object* en el contexto de SAP?",
+    "options": [
+      "Un objeto que sirve para bloquear (encriptar) datos sensibles.",
+      "Un mecanismo para sincronizar actualizaciones concurrentes a datos (bloqueos de registro).",
+      "Un tipo de variable global en la memoria de SAP.",
+      "Una transacción especial para evitar accesos no autorizados."
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es la sentencia utilizada para definir rangos de valores en la pantalla de selección de un reporte ABAP?",
+    "options": [
+      "RANGES",
+      "SELECT-OPTIONS",
+      "PARAMETERS",
+      "VALUES"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sucede al ejecutar la sentencia SUBMIT de un programa de reporte desde otro programa?",
+    "options": [
+      "Se transfiere el control al programa llamado y luego no regresa al programa inicial.",
+      "Se abre una nueva sesión interna para ejecutar el programa llamado.",
+      "El programa llamado se ejecuta en la misma sesión interna y devuelve el control al finalizar.",
+      "No es posible ejecutar SUBMIT desde otro programa."
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué técnica permite almacenar y reutilizar el resultado de una consulta de base de datos en memoria para mejorar el rendimiento?",
+    "options": [
+      "Índices secundarios",
+      "Buffers de tablas",
+      "Campos calculados",
+      "Vistas de base de datos"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué elemento del Diccionario de Datos ABAP define un conjunto fijo de valores posibles para un campo?",
+    "options": [
+      "Dominio",
+      "Elemento de datos",
+      "Tabla de valores",
+      "Tipo de referencia"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes afirmaciones sobre las *views* (vistas) en ABAP Dictionary es verdadera? (Más de una respuesta es correcta)",
+    "options": [
+      "Una vista contiene datos",
+      "Una vista puede combinar datos de múltiples tablas",
+      "Existen diferentes tipos de vistas (por ejemplo, vistas de base de datos y vistas de ayuda)",
+      "Las vistas se utilizan únicamente para definir autorizaciones"
+    ],
+    "answers": [
+      "B",
+      "C"
+    ]
+  },
+  {
+    "question": "Si se quiere evitar duplicados en los resultados de una consulta SELECT, ¿qué cláusula se debe usar?",
+    "options": [
+      "UNIQUE",
+      "NO DUPLICATES",
+      "DISTINCT",
+      "EXCLUSIVE"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para definir un nuevo bloque de procesamiento modular en un programa ABAP (subrutina)?",
+    "options": [
+      "FORM ... ENDFORM",
+      "MODULE ... ENDMODULE",
+      "FUNCTION ... ENDFUNCTION",
+      "SUBROUTINE ... ENDSUBROUTINE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿En qué casos se utiliza la sentencia sy-lsind en un programa de reporte ABAP?",
+    "options": [
+      "Para obtener el índice de la lista secundaria en la que se encuentra el programa.",
+      "Para determinar la lista actual (nivel) en un reporte interactivo.",
+      "Para contar el número de líneas de la lista principal.",
+      "Para identificar el índice del elemento seleccionado en una lista de valores."
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué tipo de tabla interna permite tener un índice no único y elementos duplicados?",
+    "options": [
+      "Tabla estándar (Standard)",
+      "Tabla ordenada (Sorted)",
+      "Tabla hash (Hashed)",
+      "Tabla estática"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de la sentencia AUTHORITY-CHECK en ABAP?",
+    "options": [
+      "Verificar si el usuario tiene la autorización adecuada para una acción o acceso de datos.",
+      "Ejecutar un comando del sistema operativo con privilegios elevados.",
+      "Registrar un cambio de datos en la bitácora de auditoría.",
+      "Asignar un objeto de autorización a un usuario."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué evento de listas se utiliza para procesar una acción cuando el usuario hace clic en una línea de una lista secundaria en un reporte interactivo?",
+    "options": [
+      "AT LINE-SELECTION",
+      "TOP-OF-PAGE",
+      "END-OF-LIST",
+      "AT USER-COMMAND"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes sentencias permite manejar excepciones al llamar a una función (Function Module) en ABAP?",
+    "options": [
+      "EXCEPTIONS",
+      "CATCH",
+      "TRY ... ENDTRY",
+      "ERROR HANDLER"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué funcionalidad proporciona una *Logical Database* (LDB) en ABAP? (Más de una respuesta es correcta)",
+    "options": [
+      "Lectura secuencial de datos de varias tablas vinculadas",
+      "Pantallas de selección estandarizadas y manejo de autorizaciones",
+      "Mejoras de rendimiento en operaciones matemáticas",
+      "Funciones de procesamiento de texto avanzado"
+    ],
+    "answers": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP permite capturar la selección de una línea de una lista durante la interacción con el usuario en un reporte?",
+    "options": [
+      "READ LINE",
+      "GET CURSOR",
+      "LINE-SELECTION",
+      "READ CURRENT LINE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro de un LOOP ... ENDLOOP sobre una tabla interna, ¿qué sentencia permite salir por completo del bucle antes de terminar todas las iteraciones?",
+    "options": [
+      "EXIT",
+      "CHECK",
+      "CONTINUE",
+      "STOP"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Para qué se utiliza la sentencia CHAIN ... ENDCHAIN en los módulos de diálogo (dynpros) de SAP?",
+    "options": [
+      "Para unir varias tablas en una sola instrucción SELECT",
+      "Para validar en grupo varios campos de entrada en un dynpro",
+      "Para encadenar varios módulos de diálogo en secuencia",
+      "Para actualizar varias filas de una tabla interna al mismo tiempo"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes afirmaciones sobre *parameter IDs* (SPA/GPA parameters) es correcta?",
+    "options": [
+      "Permiten llenar automáticamente campos de entrada basados en valores guardados anteriormente",
+      "Solo pueden ser utilizados en módulos de función",
+      "Sirven para identificar parámetros en la definición de un programa",
+      "Requieren autorización especial para ser utilizados"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué componente se utiliza para crear menús contextuales (clic derecho) en una lista o dynpro en SAP?",
+    "options": [
+      "GUI Status con tipo Context Menu",
+      "Function Codes especiales",
+      "Menu Painter",
+      "Control de Lista ALV"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para declarar una excepción dentro de un módulo de función?",
+    "options": [
+      "RAISE <exception>",
+      "MESSAGE E <number>",
+      "EXIT",
+      "STOP"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Al crear un **Update Function Module**, ¿qué propiedad especial debe tener?",
+    "options": [
+      "Debe estar asignado a una Logical Database",
+      "Debe ser Remote-Enabled",
+      "Debe ejecutarse con la instrucción IN UPDATE TASK",
+      "No puede contener comandos de COMMIT o ROLLBACK"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia entre las sentencias **EXPORT** e **IMPORT** en ABAP?",
+    "options": [
+      "EXPORT transfiere datos a la base de datos, IMPORT los trae de la base de datos",
+      "EXPORT guarda datos en un medio externo (archivo, memoria, etc.), IMPORT los recupera",
+      "EXPORT se usa en entornos cliente, IMPORT en entornos servidor",
+      "No hay diferencia, son sinónimos"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué evento se utiliza para modificar elementos de la pantalla de selección *justo después* de procesar la entrada del usuario, pero *antes* de ejecutar la selección de datos?",
+    "options": [
+      "AT SELECTION-SCREEN ON <campo>",
+      "AT SELECTION-SCREEN OUTPUT",
+      "AT SELECTION-SCREEN",
+      "START-OF-SELECTION"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué permite hacer la cláusula **ORDER BY** en una sentencia SELECT de Open SQL en ABAP?",
+    "options": [
+      "Ordenar los registros obtenidos según un criterio específico",
+      "Eliminar duplicados en los resultados",
+      "Resumir los resultados por grupos",
+      "Seleccionar registros de forma aleatoria"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro de un programa de diálogo, ¿qué componente se encarga de la lógica de intercambio de datos entre la pantalla (dynpro) y el procesamiento ABAP?",
+    "options": [
+      "El módulo de PBO (Process Before Output)",
+      "El módulo de PAI (Process After Input)",
+      "El GUI Status",
+      "El GUI Title"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para finalizar la ejecución de un programa de forma inmediata?",
+    "options": [
+      "EXIT",
+      "CHECK",
+      "STOP",
+      "LEAVE PROGRAM"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "En una tabla interna definida con un tipo **Sorted**, ¿qué condición debe cumplirse para los datos insertados?",
+    "options": [
+      "Que la tabla tenga un campo tipo CLUSTER",
+      "Que cada nueva entrada respete el orden definido por la clave única",
+      "Que no se puedan borrar los datos una vez insertados",
+      "Que los datos estén siempre ordenados ascendentemente por el primer campo"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes es una **transacción estándar** para la gestión del Diccionario de Datos en SAP?",
+    "options": [
+      "SE11",
+      "SE38",
+      "SM37",
+      "SE80"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia de control de flujo en ABAP permite iterar sobre un rango de valores numéricos sin utilizar una tabla interna?",
+    "options": [
+      "DO ... ENDDO",
+      "LOOP AT ... ENDLOOP",
+      "WHILE ... ENDWHILE",
+      "FOR ... NEXT"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Para qué se utiliza la adición **NO ZERO** en la definición de un campo tipo **DEC** en ABAP Dictionary?",
+    "options": [
+      "Para permitir valores cero en el campo",
+      "Para evitar el almacenamiento de ceros a la izquierda en la base de datos",
+      "Para tratar los valores cero como nulos",
+      "Para que el campo no se inicialice en cero por defecto"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "En una **Vista de Base de Datos** en SAP, ¿qué requisito debe cumplirse para las tablas que la conforman?",
+    "options": [
+      "Deben estar vinculadas por claves foráneas definidas en el Diccionario",
+      "Deben compartir el mismo módulo de función",
+      "Deben tener el mismo número de campos",
+      "Deben pertenecer todas al mismo paquete de desarrollo"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué componente del Diccionario de Datos se utiliza para crear una ayuda de búsqueda (Search Help) estándar?",
+    "options": [
+      "Elementary Search Help",
+      "Collective Search Help",
+      "Scoped Search Help",
+      "Tabla de búsqueda"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para declarar una **estructura de datos** local (no persistente) en un programa ABAP?",
+    "options": [
+      "DATA: BEGIN OF ... END OF ...",
+      "TYPES: BEGIN OF ... END OF ...",
+      "STATICS: BEGIN OF ... END OF ...",
+      "FIELD-SYMBOLS: BEGIN OF ... END OF ..."
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es el resultado de utilizar la sentencia **COLLECT** con una tabla interna en ABAP?",
+    "options": [
+      "Inserta una nueva fila siempre al final de la tabla interna, sin importar duplicados",
+      "Borra las filas duplicadas en la tabla interna",
+      "Suma los valores numéricos de la nueva entrada a una existente con la misma clave (o la inserta si no existe)",
+      "Ordena la tabla interna al insertar el nuevo registro"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "En la programación de dynpros, ¿qué significado tiene el **campo OK-CODE** (SY-UCOMM)?",
+    "options": [
+      "Contiene el código de función (command code) del último elemento de interacción (botón, menú) accionado por el usuario",
+      "Indica si la última operación en la base de datos fue exitosa",
+      "Almacena un código de estado de pantalla para restaurarla más tarde",
+      "Guarda el código de error en caso de fallo de validación"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es un **tipo de referencia** (Reference Type) en ABAP Dictionary?",
+    "options": [
+      "Un tipo de datos que referencia a otro objeto de datos (por ejemplo, una clase o interfaz)",
+      "Un tipo de datos obsoleto que ya no se utiliza",
+      "Una tabla especial que referencia datos maestros",
+      "Una variable global de referencia en tiempo de ejecución"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de la sentencia **ROLLBACK WORK** en ABAP?",
+    "options": [
+      "Confirmar todas las operaciones realizadas desde el último COMMIT",
+      "Deshacer todas las operaciones de base de datos pendientes no confirmadas",
+      "Finalizar el programa de forma abrupta",
+      "Guardar los datos en la base de datos"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "En una **Smart Form** de SAP, ¿qué objeto se utiliza para definir un bloque de contenido de salida (texto, campos, etc.)?",
+    "options": [
+      "Una ventana (Window)",
+      "Un elemento de texto (Text Element)",
+      "Un comando (Command)",
+      "Un párrafo (Paragraph)"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia permite capturar excepciones específicas en un bloque TRY en ABAP OO?",
+    "options": [
+      "CATCH <exception_class>.",
+      "RESCUE <exception>.",
+      "TRY-CATCH <exception>.",
+      "EXCEPTION WHEN <exception>."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la función de la cláusula **GROUP BY** en una consulta Open SQL?",
+    "options": [
+      "Agrupar resultados que tienen valores idénticos en las columnas especificadas",
+      "Ordenar los resultados alfabéticamente",
+      "Restringir los resultados a un grupo de usuarios",
+      "Combinar resultados de múltiples tablas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué instrucción se utiliza para **finalizar** de manera correcta una transacción LUW (Logical Unit of Work) en SAP, asegurando que los cambios se guarden en la base de datos?",
+    "options": [
+      "COMMIT WORK",
+      "ENQUEUE",
+      "DEQUEUE",
+      "SAVE TRANSACTION"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿qué representa la variable de sistema **SY-LINNO** durante la generación de listas?",
+    "options": [
+      "El número de la línea actual que se está escribiendo en la lista",
+      "El número de líneas totales de la lista generada",
+      "El número de la última línea de la página actual",
+      "El tamaño máximo (ancho) de línea en caracteres"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué se debe hacer para ejecutar una *query* (consulta) creada con SAP Query en un entorno determinado?",
+    "options": [
+      "Asignar la query a un grupo de usuarios específico",
+      "Asignar la query a un grupo funcional y un grupo de usuarios",
+      "Transportar la query a través del Workbench",
+      "Nada, las queries están disponibles globalmente una vez creadas"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes afirmaciones sobre *listas secundarias* en ABAP es correcta?",
+    "options": [
+      "Son listas que se muestran en ventanas emergentes por separado",
+      "Reemplazan completamente a la lista básica al mostrarse",
+      "Permiten mostrar información detallada al hacer clic en la lista básica sin borrar ésta",
+      "Se crean utilizando la sentencia NEW-PAGE"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP permitiría leer la línea actual de una lista de reporte interactivo?",
+    "options": [
+      "READ LINE SY-INDEX.",
+      "READ CURRENT LINE.",
+      "GET LINE.",
+      "READ LINE INDEX."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro de un formulario Smart Form, ¿para qué sirve un *command* de tipo 'Nuevo Página' (Go to New Page)?",
+    "options": [
+      "Para saltar a una nueva página en la impresión del formulario",
+      "Para agregar una nueva página al formulario",
+      "Para crear un salto de línea dentro de la misma página",
+      "Para reiniciar la numeración de páginas del formulario"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para definir una nueva pantalla de selección con su propia lógica dentro de un mismo programa de reporte?",
+    "options": [
+      "CALL SELECTION-SCREEN",
+      "LEAVE TO SCREEN",
+      "SET SCREEN",
+      "CREATE SCREEN"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Al definir **parámetros** en la pantalla de selección de un reporte, ¿qué opción permite asociarlos a un *parameter ID* (PARID) de memoria SAP?",
+    "options": [
+      "MEMORY ID",
+      "PARAMETER ID",
+      "SPA/GPA ID",
+      "DEFAULT ID"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué efecto tiene la sentencia **NEW-PAGE** en un programa de listas ABAP? (Más de una respuesta es correcta)",
+    "options": [
+      "Inicia una nueva página en la lista de salida",
+      "Llama a un evento especial de paginación",
+      "Borra el contenido de la página actual",
+      "Permite definir un nuevo encabezado y pie de página"
+    ],
+    "answers": [
+      "A",
+      "D"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes es una característica de los **field symbols** en ABAP?",
+    "options": [
+      "Son punteros que referencian a campos o estructuras en memoria",
+      "Solo pueden apuntar a tipos de datos estándar (I, F, P, etc.)",
+      "Requieren ser inicializados con un valor por defecto",
+      "No pueden cambiar la referencia una vez asignada"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para incluir el contenido de un programa ABAP en otro durante la generación (similar a copiar y pegar el código)?",
+    "options": [
+      "INCLUDE",
+      "INSERT",
+      "APPEND",
+      "LOAD"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿qué tarea realiza el evento **END-OF-PAGE** durante la generación de listas? (Más de una respuesta es correcta)",
+    "options": [
+      "Permite procesar la creación de pies de página en la lista",
+      "Se activa cuando se llega al final de la lista de salida",
+      "Solo se ejecuta si la lista tiene al menos una página completa",
+      "Se usa para definir el contenido del pie de página de cada página"
+    ],
+    "answers": [
+      "A",
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué es un **Cluster de Datos** en SAP?",
+    "options": [
+      "Una tabla de base de datos especial que almacena datos de forma comprimida",
+      "Un conjunto de servidores de aplicaciones trabajando en paralelo",
+      "Un grupo de funciones relacionado con análisis de datos",
+      "Un tipo de autorización para acceso a múltiples objetos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro de un programa de reporte, ¿qué evento se usa para cargar datos iniciales o establecer valores por defecto *antes* de que se muestre la pantalla de selección?",
+    "options": [
+      "INITIALIZATION",
+      "AT SELECTION-SCREEN",
+      "START-OF-SELECTION",
+      "LOAD-OF-PROGRAM"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Para qué se utilizan las **transacciones de actualización (Update Task)** en SAP?",
+    "options": [
+      "Para ejecutar procesos de actualización de bases de datos de forma asíncrona",
+      "Para actualizar el sistema SAP a una nueva versión",
+      "Para programar transacciones estándar en segundo plano",
+      "Para realizar consultas de datos masivas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Si en una **tabla interna** necesitamos acceder frecuentemente a los registros por una clave específica, ¿qué tipo de tabla interna es más eficiente?",
+    "options": [
+      "Tabla estándar (Standard)",
+      "Tabla ordenada (Sorted)",
+      "Tabla hash (Hashed)",
+      "Tabla indexada"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué componente en el desarrollo ABAP se utiliza para **programar ejecuciones periódicas** de programas o reportes?",
+    "options": [
+      "Job de background (SM36/SM37)",
+      "Daemon ABAP",
+      "Scheduler interno de la VM ABAP",
+      "Transacción periódica"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro de una pantalla de selección, ¿qué componente permite agrupar lógicamente varios parámetros u opciones de selección bajo un título común?",
+    "options": [
+      "BLOCK",
+      "FRAME",
+      "GROUP BOX",
+      "SELECTION-SCREEN BEGIN OF LINE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué variable de sistema indica el número de la lista secundaria actual (nivel de lista) en un reporte interactivo?",
+    "options": [
+      "SY-LSIND",
+      "SY-CPAGE",
+      "SY-LISTI",
+      "SY-LILLI"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿cómo se denomina la técnica que permite definir varios valores de selección en un solo parámetro de rango?",
+    "options": [
+      "SELECT-OPTIONS",
+      "RANGES",
+      "MULTIPLE PARAMETERS",
+      "VALUE LIST"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el efecto de la instrucción **HIDE** en un reporte ABAP?",
+    "options": [
+      "Almacena el contenido de un campo de la lista básica para recuperarlo al seleccionar esa línea",
+      "Oculta la ventana actual del usuario",
+      "Protege campos de entrada en dynpros contra cambios no autorizados",
+      "Impide que se muestre el log de modificaciones de una tabla"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué componente se usa para crear **alianzas o enlaces** entre campos de una pantalla de selección y ayudas de búsqueda (Search Helps)?",
+    "options": [
+      "Matchcode Object",
+      "Search Help Exit",
+      "PARAMETER ID (SPA/GPA)",
+      "Asignación de elementos de datos con Search Help"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP permite **detener temporalmente** la ejecución de un programa para fines de depuración?",
+    "options": [
+      "BREAK-POINT",
+      "ASSERT",
+      "LOG-POINT",
+      "TRACE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de la instrucción **MODIFY SCREEN** en el procesamiento de dynpros?",
+    "options": [
+      "Modificar dinámicamente los atributos de los campos de pantalla (p. ej., hacerlos invisibles o de solo lectura)",
+      "Cambiar el tamaño de la pantalla en tiempo de ejecución",
+      "Modificar los valores de los campos de pantalla antes de su visualización",
+      "Aplicar cambios en la base de datos desde la pantalla de actualización"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es cierto sobre las **transacciones de diálogo** en SAP?",
+    "options": [
+      "Siempre constan de una única pantalla",
+      "Permiten una interacción dinámica con el usuario a través de múltiples pantallas (dynpros)",
+      "No pueden llamar a módulos de función",
+      "Solo se usan para mantenimiento de tablas"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de los siguientes tipos de mensajes detiene la ejecución del programa y no permite continuar (excepto salir)?",
+    "options": [
+      "A (Abend)",
+      "E (Error)",
+      "I (Information)",
+      "W (Warning)"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para crear un *tipo de datos* local en un programa ABAP (por ejemplo, una estructura o tabla interna personalizada)?",
+    "options": [
+      "TYPES",
+      "DATA",
+      "CONSTANTS",
+      "STATICS"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué funcionalidad ofrece la transacción **SE80** en el entorno de desarrollo ABAP?",
+    "options": [
+      "Es el Object Navigator, que permite acceder a todos los objetos de desarrollo (programas, funciones, clases, diccionario, etc.)",
+      "Es la herramienta para el mantenimiento de mandantes (clientes) en SAP",
+      "Sirve para monitorear el rendimiento de un sistema ABAP",
+      "Permite realizar transportes de objetos entre sistemas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En un **ALV (ABAP List Viewer)**, ¿qué objeto se utiliza para definir las **propiedades de las columnas** (títulos, anchos, ajustes, etc.)?",
+    "options": [
+      "Layout (SLIS_LAYOUT_ALV)",
+      "Field Catalog",
+      "Event Handler",
+      "Container Control"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué se entiende por **mandante (cliente)** en SAP?",
+    "options": [
+      "Una instancia lógica separada dentro de un sistema SAP con sus propios datos maestros y de configuración",
+      "Un usuario con privilegios administrativos",
+      "Una conexión a un sistema externo",
+      "Un servidor de aplicaciones específico"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia entre *Include* y *Append* en el contexto de estructuras (structures) en ABAP Dictionary?",
+    "options": [
+      "Include inserta los componentes de una estructura en otra, Append añade campos al final de la tabla estándar",
+      "No hay diferencia, son términos sinónimos",
+      "Append permite reutilización en varias tablas, Include solo en una",
+      "Include es para código ABAP y Append para diccionario de datos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué permite hacer un **conversion exit** asociado a un elemento de datos en ABAP?",
+    "options": [
+      "Transformar un valor antes de mostrarlo (formato externo) y antes de guardarlo (formato interno)",
+      "Convierte el tipo de dato a otro tipo compatible en tiempo de ejecución",
+      "Genera automáticamente ayudas de búsqueda para el campo",
+      "Impide la entrada de valores no válidos en pantalla"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Para qué sirve la sentencia **TYPE-POOLS** en ABAP?",
+    "options": [
+      "Para declarar el uso de un grupo de tipos (conjunto de definiciones globales de tipos, constantes) en un programa",
+      "Para agrupar múltiples pool tables en un solo objeto",
+      "Para definir un grupo de módulos de función",
+      "Para crear un bloque de try-catch predefinido"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿qué es una **tabla de pool** y cuándo se utiliza?",
+    "options": [
+      "Una tabla lógica que combina múltiples tablas transparentes, utilizada para agrupar tablas de control poco voluminosas",
+      "Una tabla interna optimizada para operaciones en pool (colaborativas)",
+      "Una estructura de datos temporales en memoria para cálculos intermedios",
+      "Un área de la base de datos para hacer pruebas de rendimiento"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué mecanismo se usa para **sincronizar accesos concurrentes** a los datos en SAP, evitando conflictos de actualización?",
+    "options": [
+      "Enqueues/Dequeues (bloqueos de registros)",
+      "Commit y Rollback",
+      "Llamadas Remote Function Call (RFC)",
+      "Eventos de actualización (Update events)"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué utilidad tiene la transacción **ST05** en el entorno SAP?",
+    "options": [
+      "Permite realizar un trace (seguimiento) de consultas SQL y detección de cuellos de botella",
+      "Muestra los dumps (volcados) de error ABAP",
+      "Sirve para depurar paso a paso un programa ABAP",
+      "Es el analizador estático de código fuente ABAP"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la forma correcta de **capturar un código de función** seleccionado por el usuario en un menú de una pantalla normal (dynpro)?",
+    "options": [
+      "Verificando el contenido de SY-UCOMM en el módulo PAI correspondiente",
+      "Utilizando la sentencia GET COMMAND",
+      "Leyendo la variable SYSTEM-COMMAND",
+      "Usando una interrupción (BREAK) en el menú"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro del contexto de **SAP Script**, ¿qué es un **Elemento de Texto**?",
+    "options": [
+      "Un bloque de texto formateado que puede ser reutilizado e incluido en distintos formularios",
+      "Un campo de entrada de texto en una dynpro",
+      "Un tipo de datos alfanumérico largo",
+      "Una sección de código ABAP dentro de un script"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué significa que un **módulo de función** esté marcado como *Remote-Enabled*?",
+    "options": [
+      "Que puede ser invocado desde otros sistemas mediante RFC (Remote Function Call)",
+      "Que se ejecuta en un sistema remoto en lugar del actual",
+      "Que tiene autorizaciones especiales de administrador",
+      "Que solo puede ser ejecutado en modo diálogo, no en background"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el objetivo de un **grupo de funciones** (Function Group) en ABAP?",
+    "options": [
+      "Agrupar módulos de función que comparten áreas de memoria global",
+      "Generar código de funciones automáticamente",
+      "Definir la interfaz de comunicación entre programas y la base de datos",
+      "Servir como biblioteca estándar de funciones del sistema"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es **SE37** en SAP?",
+    "options": [
+      "La transacción para visualizar y editar Módulos de Función",
+      "El código de mensaje de error al guardar un módulo de función",
+      "La tabla de base de datos que almacena los módulos de función",
+      "Un tipo especial de dynpro para funciones"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué herramienta o transacción se utiliza para **gestionar transportes** de objetos de ABAP entre distintos sistemas (por ejemplo, de desarrollo a producción)?",
+    "options": [
+      "SE10 / SE09 (Transport Organizer)",
+      "SP01 (Spool)",
+      "SM21 (System Log)",
+      "SA38 (Background job management)"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué permiten las **Business Add-Ins (BAdI)** en SAP?",
+    "options": [
+      "Añadir extensiones o mejoras personalizadas al estándar de SAP sin modificar el código fuente original",
+      "Analizar la información de negocio en tiempo real",
+      "Crear informes financieros automáticamente",
+      "Definir integraciones con sistemas externos sin programación"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para **invocar** un módulo de función *sincrónicamente* dentro de un programa ABAP?",
+    "options": [
+      "CALL FUNCTION <nombre> ...",
+      "PERFORM <función>",
+      "CALL METHOD <módulo>",
+      "EXECUTE FUNCTION <nombre>"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿para qué sirve la estructura de control **CASE**?",
+    "options": [
+      "Para realizar diferentes acciones según el valor de una expresión (selección múltiple)",
+      "Para iterar un número fijo de veces",
+      "Para definir bloques de código reutilizables",
+      "Para capturar excepciones en operaciones aritméticas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué ocurre si en un **Loop** anidado (un LOOP dentro de otro LOOP) se ejecuta la sentencia **CONTINUE**?",
+    "options": [
+      "Continúa con la siguiente iteración del loop interno",
+      "Continúa con la siguiente iteración del loop externo",
+      "Termina ambos loops",
+      "Salta fuera del loop interno y continúa después del loop externo"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes es una **transacción de consulta (Query)** que permite a usuarios finales generar informes sin programación?",
+    "options": [
+      "SQ01",
+      "SE16",
+      "SA38",
+      "SQVI"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué elemento en ABAP se utiliza para **manipular cadenas de texto** (strings) de manera dinámica (concatenar, partir, buscar subcadenas, etc.)?",
+    "options": [
+      "Las funciones de cadena (concatenate, split, search, etc.)",
+      "Los field symbols",
+      "Los tipos de datos NUMC",
+      "Las tablas internas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sucede si un **programa de reporte** no contiene explicitamente ningún evento START-OF-SELECTION?",
+    "options": [
+      "El bloque implícito de START-OF-SELECTION se ejecuta igualmente al iniciar el reporte",
+      "El reporte no se ejecutará",
+      "El reporte entrará directamente al modo de lista sin procesar lógica",
+      "Se lanzará un error en tiempo de generación"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes afirmaciones es cierta con respecto a los **tipos de datos definidos por el usuario** en el ABAP Dictionary?",
+    "options": [
+      "Pueden ser usados en cualquier programa ABAP una vez activados",
+      "Solo pueden usarse en el programa en el que se definieron",
+      "No admiten elementos de texto para la documentación",
+      "Deben comenzar con 'Z' obligatoriamente"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué permite hacer la instrucción **CALL TRANSACTION** en ABAP?",
+    "options": [
+      "Llamar a una transacción (dynpro) desde un programa ABAP de forma sincrónica",
+      "Iniciar una transacción en modo debug",
+      "Ejecutar una transacción en background",
+      "Definir un atajo de teclado para una transacción"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia entre **CHECK** y **CONTINUE** dentro de un loop en ABAP?",
+    "options": [
+      "CHECK termina la iteración actual y sale del loop si la condición es falsa; CONTINUE salta a la siguiente iteración",
+      "No hay diferencia, ambos continúan con la siguiente iteración",
+      "CHECK reinicia el loop completo, CONTINUE solo la iteración actual",
+      "CHECK evalúa condiciones numéricas, CONTINUE condiciones lógicas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es una **página de diálogo modal** en SAP?",
+    "options": [
+      "Una ventana emergente que bloquea la interacción con la ventana principal hasta que se cierra",
+      "Una página de ayuda en la documentación de SAP",
+      "Un modo especial de ejecución de transacciones en background",
+      "Una pestaña dentro de la SE80 para abrir múltiples objetos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cómo se declara una constante llamada *c_pi* con valor 3.1416 de tipo DEC con 4 enteros y 4 decimales en ABAP?",
+    "options": [
+      "CONSTANTS: c_pi TYPE p LENGTH 8 DECIMALS 4 VALUE '3.1416'.",
+      "CONSTANTS c_pi(4) TYPE DEC VALUE 3.1416.",
+      "DATA c_pi TYPE p DECIMALS 4 VALUE '3.1416' CONSTANT.",
+      "CONSTANTS: c_pi TYPE dec4 VALUE 3.1416."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué efecto tiene la opción **NO STANDARD PAGE HEADING** en una sentencia de listado (por ejemplo, WRITE) en ABAP?",
+    "options": [
+      "Evita que se genere automáticamente el encabezado de página estándar en una lista",
+      "Elimina los saltos de página automáticos",
+      "Impide que se muestren las líneas de lista en la pantalla",
+      "No tiene ningún efecto en la generación de listas"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Para qué sirve la construcción **EVENTS** ... **FOR TABLE** ... en un programa que usa una Logical Database?",
+    "options": [
+      "Para declarar qué eventos de base de datos lógica serán manejados en el programa",
+      "Para crear eventos personalizados durante la lectura de tablas",
+      "Para enlazar triggers de base de datos con el programa ABAP",
+      "Para definir subrutinas con nombres de eventos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "Dentro del manejo de actualizaciones (Update Task), ¿qué diferencia hay entre los módulos de función marcados como *Update Module* de tipo V1 y V2?",
+    "options": [
+      "Los V1 son críticos y se ejecutan antes que los V2 durante el commit, garantizando consistencia inmediata; los V2 son menos críticos y pueden ejecutarse después",
+      "No existe diferencia, es solo una clasificación sin efecto práctico",
+      "Los V1 se usan para transacciones de dialogo y los V2 para background",
+      "V1 se refiere a la versión 1 del módulo de función y V2 a la versión 2"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué nos permite hacer la transacción **SM12** en SAP?",
+    "options": [
+      "Monitorear y liberar bloqueos (locks) de base de datos en el sistema",
+      "Visualizar los objetos recientes del repositorio",
+      "Editar los valores de las tablas de parametrización",
+      "Crear o modificar módulos de función"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es un **paquete** (package) en ABAP?",
+    "options": [
+      "Una agrupación lógica de objetos de desarrollo que facilita su transporte y organización",
+      "Un conjunto de órdenes de transporte",
+      "Un archivo comprimido con código ABAP",
+      "Un módulo de funciones predefinidas por SAP"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué indica la opción **CLIENT SPECIFIED** en una sentencia SELECT en ABAP?",
+    "options": [
+      "Que la consulta debe ejecutarse explícitamente considerando el mandante (cliente) especificado en la cláusula WHERE",
+      "Que los resultados deben agruparse por mandante",
+      "Que la selección ignorará el campo MANDT",
+      "Que solo un cliente específico tiene permiso para ejecutar la SELECT"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es un **Lock Object** y cómo se define?",
+    "options": [
+      "Un objeto definido en el Diccionario de Datos que, mediante la transacción SE11, crea funciones ENQUEUE/DEQUEUE para gestionar bloqueos de registros",
+      "Una variable global que impide la modificación concurrente",
+      "Un tipo de BAdI para sincronización",
+      "Una transacción para bloquear usuarios"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué función cumple la **SM37** en SAP?",
+    "options": [
+      "Permite visualizar y administrar jobs de background (procesos en segundo plano)",
+      "Muestra las sesiones de usuario activas en el sistema",
+      "Gestiona las spool requests (impresiones)",
+      "Sirve para analizar trazas de rendimiento"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En un programa ABAP, ¿para qué se utiliza la sentencia **DESCRIBE TABLE itab LINES ...**?",
+    "options": [
+      "Para obtener el número de líneas (filas) actuales de una tabla interna en tiempo de ejecución",
+      "Para describir la estructura de una tabla de base de datos",
+      "Para listar los contenidos de una tabla interna",
+      "Para validar si la tabla interna está ordenada"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia entre **SY-TABIX** y **SY-INDEX** en ABAP?",
+    "options": [
+      "SY-TABIX indica el índice de la tabla interna actualmente procesada en un loop, mientras SY-INDEX es el índice de iteración en bucles DO/WHILE.",
+      "SY-TABIX es el tamaño de la tabla interna y SY-INDEX el índice actual en un loop de tabla",
+      "No hay diferencia, ambos representan el índice de loop actual",
+      "SY-INDEX solo se usa en loops anidados y SY-TABIX en loops simples"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué nos permite hacer la transacción **AL11** en un sistema SAP?",
+    "options": [
+      "Ver el sistema de archivos del servidor de aplicaciones (directorios y archivos)",
+      "Acceder al registro de actividad de los usuarios",
+      "Monitorear la carga de la base de datos",
+      "Administrar licencias de SAP"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En contexto de **Smartforms**, ¿qué es un **estilo** (Style)?",
+    "options": [
+      "Un conjunto de atributos de formato (fuentes, párrafos) reutilizable en distintos textos de formularios",
+      "Una plantilla predefinida de formulario",
+      "Un tipo especial de formulario para facturas",
+      "Una forma de almacenar datos de formulario en la base de datos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia en ABAP utilizarías para **eliminar todas las filas** de una tabla interna de forma eficiente?",
+    "options": [
+      "CLEAR itab.",
+      "DELETE itab INDEX ALL.",
+      "REFRESH itab.",
+      "FREE itab."
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Cuál es la utilidad de la transacción **SP01** en SAP?",
+    "options": [
+      "Visualizar el spool de impresión (trabajos de impresión pendientes/completados)",
+      "Revisar el rendimiento de sentencias SQL",
+      "Gestionar parámetros de spool de background",
+      "Monitorear la cola de actualización"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP usarías para **capturar la posición del cursor** del usuario en pantalla (por ejemplo, en qué campo está situado)?",
+    "options": [
+      "GET CURSOR FIELD <campo>.",
+      "READ SCREEN CURSOR.",
+      "CURSOR POSITION INTO <campo>.",
+      "GET POSITION <campo>."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En ABAP, ¿qué ocurre si se define una tabla interna con un tipo **hashed** y luego se intenta acceder a ella mediante un índice numérico (por posición)?",
+    "options": [
+      "Genera un error en tiempo de ejecución, porque las tablas hash no soportan acceso por índice numérico",
+      "La tabla se convierte implícitamente a tipo estándar para permitir el acceso",
+      "Retorna siempre la primera posición",
+      "Compila pero no retorna ningún valor (como si estuviera vacía)"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es cierto con respecto al **Workbench request** y el **Customizing request** en el sistema de transportes de SAP?",
+    "options": [
+      "Los Workbench request transportan objetos de desarrollo (codigo, diccionario), mientras que los Customizing transportan configuraciones de cliente.",
+      "No existe diferencia, ambos son términos para órdenes de transporte",
+      "El Workbench request es para transportar solo dentro del mismo mandante, el Customizing entre mandantes",
+      "El Customizing request requiere aprobación del Basis, el Workbench no"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para **invocar un método estático** de una clase en ABAP OO?",
+    "options": [
+      "CALL METHOD clase=>método( ).",
+      "CALL FUNCTION clase->método.",
+      "PERFORM método IN CLASS clase.",
+      "CALL STATIC clase-método."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es un **dominio** en el contexto del Diccionario ABAP y qué propiedades principales define?",
+    "options": [
+      "Es la definición de los atributos técnicos de un campo (tipo de datos, longitud, posibles valores) compartidos por varios elementos de datos",
+      "Una clasificación de datos maestros por áreas funcionales",
+      "Un grupo de usuarios con ciertas autorizaciones sobre datos",
+      "Una capa de abstracción entre la base de datos y las aplicaciones"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "En un programa ABAP, ¿cuál es el resultado de no liberar (FREE) una tabla interna muy grande después de su uso?",
+    "options": [
+      "Puede mantener ocupada la memoria hasta que finalice el programa",
+      "Ninguno, la memoria se libera automáticamente al salir del bloque",
+      "La tabla interna queda disponible para otros programas",
+      "Provocará un dump inmediato"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para recuperar una lista de posibles entradas (F4) para un campo de entrada?",
+    "options": [
+      "AT SELECTION-SCREEN ON VALUE-REQUEST",
+      "AT USER-COMMAND",
+      "INITIALIZATION",
+      "ON F4-REQUEST"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué declaración define un parámetro de selección de tipo carácter con longitud 10 y valor por defecto 'SAP'?",
+    "options": [
+      "PARAMETERS: p_name(10) TYPE c DEFAULT 'SAP'.",
+      "PARAMETERS: p_name TYPE c LENGTH 10 DEFAULT 'SAP'.",
+      "SELECT-OPTIONS: p_name FOR c(10) DEFAULT 'SAP'.",
+      "PARAMETERS: p_name TYPE c10 DEFAULT 'SAP'."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para capturar el código de función activado por el usuario en la interfaz gráfica?",
+    "options": [
+      "AT USER-COMMAND",
+      "GET USER-COMMAND",
+      "CASE SY-FCODE",
+      "ON USER-COMMAND"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué comando se utiliza para crear un salto de línea en la lista de salida?",
+    "options": [
+      "SKIP",
+      "ULINE",
+      "NEW-LINE",
+      "WRITE AT /"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué significa la opción NO-DISPLAY en una definición PARAMETERS?",
+    "options": [
+      "El campo se muestra como solo lectura",
+      "El campo se oculta de la pantalla de selección",
+      "El campo es obligatorio",
+      "El campo está protegido contra escritura"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando se utiliza para detener completamente un programa?",
+    "options": [
+      "EXIT",
+      "STOP",
+      "LEAVE PROGRAM",
+      "RETURN"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué significa INITIALIZATION en un programa de reporte ABAP?",
+    "options": [
+      "Evento que permite establecer valores iniciales antes de mostrar la pantalla de selección",
+      "Evento que limpia las tablas internas",
+      "Evento de cierre del programa",
+      "Evento que muestra la lista"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de una ayuda de búsqueda (Search Help)?",
+    "options": [
+      "Restringir los valores de entrada",
+      "Proporcionar listas de posibles valores",
+      "Validar valores ingresados",
+      "Proteger contra datos erróneos"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué significa la opción OBLIGATORY en un campo de la pantalla de selección?",
+    "options": [
+      "El campo debe completarse obligatoriamente",
+      "El campo es visible",
+      "El campo es editable",
+      "El campo acepta múltiples valores"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué declaración es correcta sobre el evento END-OF-SELECTION?",
+    "options": [
+      "Se dispara inmediatamente después del INITIALIZATION",
+      "Se ejecuta si no hay START-OF-SELECTION",
+      "Se activa automáticamente después de START-OF-SELECTION",
+      "Es un evento obligatorio en todos los programas"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué comando se usa para mostrar un campo de entrada en una lista?",
+    "options": [
+      "WRITE",
+      "INPUT",
+      "PARAMETERS",
+      "FORMAT INPUT"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Cuál es la función de la sentencia MODIFY en ABAP?",
+    "options": [
+      "Modificar registros de una base de datos",
+      "Modificar el contenido de una tabla interna",
+      "Ambas anteriores",
+      "Crear estructuras de datos"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para recuperar el contenido de un registro de base de datos?",
+    "options": [
+      "GET",
+      "READ",
+      "SELECT",
+      "FETCH"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué significa “vista de mantenimiento” en el contexto del diccionario de datos?",
+    "options": [
+      "Vista utilizada solo para propósitos de actualización",
+      "Vista que permite la entrada y mantenimiento de datos a través de SM30",
+      "Vista utilizada para mostrar relaciones de clave externa",
+      "Vista generada por código"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Para qué se usa la sentencia HIDE en un reporte interactivo?",
+    "options": [
+      "Para ocultar campos de la lista",
+      "Para guardar temporalmente los datos de una línea para eventos interactivos",
+      "Para crear listas de detalle",
+      "Para eliminar líneas de una lista"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué evento se utiliza para validar todos los campos antes de que se muestre la pantalla de selección?",
+    "options": [
+      "INITIALIZATION",
+      "AT SELECTION-SCREEN",
+      "START-OF-SELECTION",
+      "TOP-OF-PAGE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando se utiliza para dibujar una línea horizontal en una lista?",
+    "options": [
+      "WRITE: '--------------'.",
+      "ULINE",
+      "SKIP",
+      "NEW-LINE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué hace la sentencia COLLECT?",
+    "options": [
+      "Añade un registro a una tabla interna si no existe",
+      "Suma valores numéricos en campos duplicados",
+      "Ambas anteriores",
+      "Elimina duplicados de una tabla interna"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Para qué sirve el evento TOP-OF-PAGE?",
+    "options": [
+      "Para ejecutar lógica al inicio del programa",
+      "Para establecer encabezados de página",
+      "Para definir variables",
+      "Para ejecutar lógica después del reporte"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuándo se utiliza LEAVE TO TRANSACTION?",
+    "options": [
+      "Para finalizar el programa",
+      "Para llamar otra transacción desde el programa actual",
+      "Para regresar al menú SAP",
+      "Para abrir una nueva sesión"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes sentencias NO pertenece al procesamiento de listas?",
+    "options": [
+      "ULINE",
+      "SKIP",
+      "APPEND",
+      "WRITE"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Con qué palabra clave se definen campos obligatorios en la pantalla de selección?",
+    "options": [
+      "REQUIRED",
+      "MANDATORY",
+      "OBLIGATORY",
+      "FORCED"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué evento se dispara cuando un usuario hace doble clic en una lista?",
+    "options": [
+      "TOP-OF-PAGE",
+      "AT LINE-SELECTION",
+      "AT USER-COMMAND",
+      "END-OF-SELECTION"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Para qué sirve CLEAR en ABAP?",
+    "options": [
+      "Eliminar una tabla",
+      "Borrar la pantalla",
+      "Inicializar una variable o estructura",
+      "Cerrar el programa"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿A qué tipo de datos pertenece un campo C en ABAP?",
+    "options": [
+      "Entero",
+      "Fecha",
+      "Caracter",
+      "Moneda"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué variable del sistema contiene el número de página actual en una lista?",
+    "options": [
+      "SY-PAGNO",
+      "SY-LINNO",
+      "SY-TABIX",
+      "SY-INDEX"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sucede si no se incluye ningún evento en un programa de reporte?",
+    "options": [
+      "Se produce un error",
+      "El sistema asume automáticamente START-OF-SELECTION",
+      "El programa no se ejecuta",
+      "El sistema asume automáticamente END-OF-SELECTION"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para detener el procesamiento de una lista interactiva y volver a la lista anterior?",
+    "options": [
+      "LEAVE LIST-PROCESSING",
+      "RETURN",
+      "LEAVE SCREEN",
+      "EXIT"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué tipo de estructura se utiliza para definir una línea de una tabla interna?",
+    "options": [
+      "Registro de base de datos",
+      "Línea de tabla",
+      "Estructura del diccionario",
+      "Línea de lista"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué significa el dominio en el diccionario ABAP?",
+    "options": [
+      "Conjunto de valores posibles de una tabla",
+      "Descripción técnica de un campo, como tipo y longitud",
+      "Relación entre tablas",
+      "Tabla de claves externas"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es la forma correcta de definir una tabla interna con una estructura específica?",
+    "options": [
+      "DATA: itab TYPE TABLE OF structure.",
+      "DATA: itab TYPE structure OCCURS 0.",
+      "TABLES: itab.",
+      "DATA: BEGIN OF itab OCCURS 0."
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué tipo de ayuda permite combinar varias ayudas de búsqueda elementales?",
+    "options": [
+      "Ayuda estándar",
+      "Ayuda de búsqueda compuesta",
+      "Ayuda de búsqueda colectiva",
+      "Ayuda de valor"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿En qué evento se pueden definir encabezados para listas de detalle?",
+    "options": [
+      "TOP-OF-PAGE",
+      "END-OF-SELECTION",
+      "TOP-OF-PAGE DURING LINE-SELECTION",
+      "START-OF-SELECTION"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para leer una tabla interna con clave?",
+    "options": [
+      "READ TABLE",
+      "SELECT",
+      "GET",
+      "LOOKUP TABLE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué comando limpia el contenido de una tabla interna sin borrar su definición?",
+    "options": [
+      "CLEAR",
+      "REFRESH",
+      "DELETE",
+      "INITIALIZE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de una vista de base de datos en ABAP?",
+    "options": [
+      "Combinar datos de múltiples tablas físicas",
+      "Visualizar estructuras de pantalla",
+      "Generar listas de impresión",
+      "Crear reportes básicos"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué ocurre si usas EXIT dentro de un bloque LOOP?",
+    "options": [
+      "Sale completamente del programa",
+      "Sale del bucle actual",
+      "Finaliza el sistema",
+      "Reinicia el bucle"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué define un elemento de datos?",
+    "options": [
+      "El tipo de datos físico de una tabla",
+      "El dominio de una estructura",
+      "El significado semántico y etiqueta de un campo",
+      "La longitud de una tabla"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Cuál es el número máximo de caracteres permitidos en un nombre de variable en ABAP?",
+    "options": [
+      "20",
+      "30",
+      "15",
+      "40"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando usas para pasar control a otro programa ABAP?",
+    "options": [
+      "CALL TRANSACTION",
+      "SUBMIT",
+      "PERFORM",
+      "LEAVE TO SCREEN"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito del evento INITIALIZATION?",
+    "options": [
+      "Validar datos de entrada",
+      "Establecer valores por defecto antes de mostrar la pantalla de selección",
+      "Procesar resultados",
+      "Mostrar encabezados de página"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para evitar que un reporte muestre la cabecera estándar de página?",
+    "options": [
+      "NO HEADER",
+      "REPORT...NO STANDARD PAGE HEADING",
+      "WRITE: / 'NO HEADER'.",
+      "SUPPRESS HEADER"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué variable contiene el código de función activado por el usuario?",
+    "options": [
+      "SY-UCOMM",
+      "SY-FCODE",
+      "SY-REPID",
+      "SY-INDEX"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué se requiere para definir una clave foránea en el diccionario?",
+    "options": [
+      "Que los campos compartan el mismo nombre",
+      "Que los campos compartan el mismo dominio",
+      "Que el campo referenciado sea clave primaria en la tabla de verificación",
+      "Que la tabla de verificación sea una estructura"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué evento ocurre cuando el usuario presiona F4 en un campo?",
+    "options": [
+      "AT LINE-SELECTION",
+      "HELP-REQUEST",
+      "AT USER-COMMAND",
+      "ON VALUE-REQUEST"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué significa WRITE: /?",
+    "options": [
+      "Imprimir sin salto de línea",
+      "Salto de página",
+      "Imprimir en la siguiente línea",
+      "Insertar encabezado de lista"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué objeto no puede tener una ayuda de búsqueda directamente asignada?",
+    "options": [
+      "Campo de tabla",
+      "Elemento de datos",
+      "Dominio",
+      "Estructura"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para definir una selección de rango de valores?",
+    "options": [
+      "PARAMETERS",
+      "SELECT",
+      "SELECT-OPTIONS",
+      "RANGE"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para saltar directamente a otra pantalla?",
+    "options": [
+      "LEAVE SCREEN",
+      "CALL SCREEN",
+      "EXIT",
+      "RETURN"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando puedes usar para invocar una función desde un grupo de funciones?",
+    "options": [
+      "CALL FUNCTION",
+      "PERFORM",
+      "INVOKE FUNCTION",
+      "USE FUNCTION"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué es un \"include\" en ABAP?",
+    "options": [
+      "Una subrutina",
+      "Un programa externo",
+      "Un archivo de código fuente reutilizable",
+      "Una tabla de base de datos"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Cuál es la ventaja de usar SELECT SINGLE sobre SELECT...ENDSELECT?",
+    "options": [
+      "SELECT SINGLE devuelve múltiples registros",
+      "SELECT SINGLE tiene mejor rendimiento para un solo resultado",
+      "SELECT SINGLE siempre usa búfer",
+      "SELECT SINGLE permite ordenar los resultados"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se utiliza para mostrar un cuadro de diálogo modal?",
+    "options": [
+      "CALL WINDOW",
+      "CALL SCREEN",
+      "CALL DIALOG",
+      "CALL SCREEN...STARTING AT...ENDING AT..."
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué evento se ejecuta antes de que se muestre la pantalla de selección al usuario?",
+    "options": [
+      "INITIALIZATION",
+      "START-OF-SELECTION",
+      "TOP-OF-PAGE",
+      "AT SELECTION-SCREEN"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia permite definir múltiples opciones de selección para un campo?",
+    "options": [
+      "RANGES",
+      "PARAMETERS",
+      "SELECT FIELDS",
+      "FIELD-OPTIONS"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué significa PERFORM subrutina USING variable?",
+    "options": [
+      "Ejecuta una función remota",
+      "Llama una subrutina local con parámetros",
+      "Asigna un valor a una variable",
+      "Define una tabla interna"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es el propósito de TABLES en un programa ABAP?",
+    "options": [
+      "Crear una tabla física",
+      "Definir una estructura de la base de datos lógica",
+      "Declarar una tabla interna",
+      "Vincular una tabla de base de datos o estructura al programa"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia abre una nueva sesión de trabajo en SAP?",
+    "options": [
+      "CALL SCREEN",
+      "CALL TRANSACTION",
+      "SUBMIT",
+      "No es posible abrir una nueva sesión desde ABAP"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué componente no pertenece al Workbench ABAP?",
+    "options": [
+      "Editor de programas",
+      "Diccionario de datos",
+      "Monitor de fondo (Background Monitor)",
+      "Constructor de pantallas"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué evento se utiliza para modificar los valores visibles en la pantalla de selección antes de que se muestre?",
+    "options": [
+      "INITIALIZATION",
+      "START-OF-SELECTION",
+      "AT SELECTION-SCREEN OUTPUT",
+      "AT SELECTION-SCREEN ON VALUE-REQUEST"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para acceder a los parámetros SPA/GPA en la memoria de usuario?",
+    "options": [
+      "GET PARAMETER",
+      "IMPORT PARAMETER",
+      "ACCESS PARAMETER",
+      "READ PARAMETER"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué función tiene SET PF-STATUS?",
+    "options": [
+      "Cambiar el título del programa",
+      "Controlar los botones activos en la interfaz",
+      "Cambiar de pantalla",
+      "Activar un campo"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué significa que un campo sea de tipo CUKY?",
+    "options": [
+      "Contiene valores de moneda",
+      "Contiene códigos de país",
+      "Contiene unidades de medida",
+      "Contiene códigos de divisa"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué palabra clave permite manejar errores en llamadas a funciones?",
+    "options": [
+      "EXCEPTIONS",
+      "CATCH",
+      "TRY",
+      "ON ERROR"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP cierra una pantalla y regresa al programa que llama?",
+    "options": [
+      "LEAVE PROGRAM",
+      "LEAVE SCREEN",
+      "RETURN",
+      "EXIT"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué elemento proporciona una descripción semántica y etiquetas para un campo en el diccionario?",
+    "options": [
+      "Dominio",
+      "Elemento de datos",
+      "Vista",
+      "Tabla"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es el evento estándar que se usa para procesar datos después de la selección del usuario?",
+    "options": [
+      "END-OF-SELECTION",
+      "START-OF-SELECTION",
+      "INITIALIZATION",
+      "TOP-OF-PAGE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué significa APPEND en ABAP?",
+    "options": [
+      "Inserta un registro en una tabla de base de datos",
+      "Añade una línea al final de una tabla interna",
+      "Borra el contenido de una tabla",
+      "Ordena una tabla interna"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para capturar una excepción en una llamada a función?",
+    "options": [
+      "CATCH SYSTEM-EXCEPTIONS",
+      "CATCH EXCEPTION",
+      "TRY...CATCH",
+      "HANDLE ERROR"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué variable del sistema contiene el número de línea actual en una lista?",
+    "options": [
+      "SY-LINNO",
+      "SY-TABIX",
+      "SY-PAGNO",
+      "SY-INDEX"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué palabra clave define una subrutina externa?",
+    "options": [
+      "SUBROUTINE",
+      "INCLUDE",
+      "FUNCTION",
+      "FORM...ENDFORM"
+    ],
+    "answers": [
+      "D"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia permite definir un grupo de campos en un conjunto de datos extracto?",
+    "options": [
+      "FIELD-GROUPS",
+      "DATA-GROUPS",
+      "EXTRACT-GROUPS",
+      "SELECT-GROUPS"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué evento permite modificar el contenido de los campos justo antes de ejecutar la lógica de selección?",
+    "options": [
+      "AT SELECTION-SCREEN",
+      "INITIALIZATION",
+      "START-OF-SELECTION",
+      "AT USER-COMMAND"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué comando te permite transferir datos a una tabla interna desde la base de datos?",
+    "options": [
+      "IMPORT TABLE",
+      "SELECT INTO TABLE",
+      "INSERT",
+      "READ TABLE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para cambiar dinámicamente los atributos de formato de salida como el color o el énfasis?",
+    "options": [
+      "STYLE",
+      "FORMAT",
+      "PAINT",
+      "SET STYLE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Cuál es la diferencia entre CLEAR y REFRESH?",
+    "options": [
+      "CLEAR elimina datos y definición; REFRESH solo elimina los datos",
+      "CLEAR inicializa una variable; REFRESH vacía una tabla interna",
+      "CLEAR borra registros de la base de datos; REFRESH no",
+      "Son equivalentes"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando se usa para transferir datos desde un programa a otro usando la memoria SAP?",
+    "options": [
+      "EXPORT TO MEMORY",
+      "MOVE TO MEMORY",
+      "PASS TO MEMORY",
+      "TRANSFER TO MEMORY"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué estructura se utiliza para definir una tabla interna con encabezado de línea implícito?",
+    "options": [
+      "DATA: itab TYPE STANDARD TABLE OF sflight.",
+      "DATA: BEGIN OF itab OCCURS 0.",
+      "DATA: itab TYPE TABLE OF sflight WITH HEADER LINE.",
+      "DATA: itab LIKE TABLE OF sflight."
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué evento es activado por un doble clic del usuario en una lista interactiva?",
+    "options": [
+      "AT USER-COMMAND",
+      "AT LINE-SELECTION",
+      "START-OF-SELECTION",
+      "TOP-OF-PAGE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué palabra clave permite definir una tabla interna sin encabezado de línea?",
+    "options": [
+      "WITH NO HEADER LINE",
+      "WITHOUT HEADER",
+      "NO HEADER LINE",
+      "TABLE WITHOUT HEADER"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué evento se usa para establecer valores por defecto en los campos de selección?",
+    "options": [
+      "AT SELECTION-SCREEN",
+      "INITIALIZATION",
+      "START-OF-SELECTION",
+      "TOP-OF-PAGE"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué hace la sentencia READ TABLE itab INDEX 1.?",
+    "options": [
+      "Lee el primer registro de la base de datos",
+      "Lee la primera línea de la tabla interna itab",
+      "Lee el índice de una tabla base",
+      "Lee el encabezado de la tabla"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando borra todas las líneas de una tabla interna?",
+    "options": [
+      "DELETE itab.",
+      "CLEAR itab.",
+      "REFRESH itab.",
+      "INIT itab."
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué tipo de datos representa CLNT?",
+    "options": [
+      "Código de divisa",
+      "Cliente (cliente SAP)",
+      "Clase",
+      "Longitud de carácter"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para especificar una transacción de inicio para un programa?",
+    "options": [
+      "TRANSACTION",
+      "START-OF-SELECTION",
+      "REPORT",
+      "SELECTION-SCREEN"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Cuál de las siguientes sentencias se usa para ejecutar otro programa desde el actual?",
+    "options": [
+      "SUBMIT",
+      "START",
+      "RUN",
+      "EXECUTE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué opción se usa en un WRITE para posicionar la salida debajo de otro campo?",
+    "options": [
+      "UNDER",
+      "DOWN",
+      "POSITION",
+      "NEW-LINE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué campo del sistema contiene el nombre del programa actualmente en ejecución?",
+    "options": [
+      "SY-REPID",
+      "SY-PROG",
+      "SY-NAME",
+      "SY-TCODE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia permite visualizar una pantalla específica?",
+    "options": [
+      "LEAVE SCREEN",
+      "SHOW SCREEN",
+      "CALL SCREEN",
+      "DISPLAY SCREEN"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia ABAP se usa para detener la ejecución de un programa?",
+    "options": [
+      "LEAVE PROGRAM",
+      "STOP",
+      "EXIT",
+      "TERMINATE"
+    ],
+    "answers": [
+      "A"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia devuelve el control al programa llamador después de mostrar una pantalla?",
+    "options": [
+      "EXIT",
+      "RETURN",
+      "LEAVE SCREEN",
+      "END-SCREEN"
+    ],
+    "answers": [
+      "B"
+    ]
+  },
+  {
+    "question": "¿Qué comando elimina entradas duplicadas en una tabla interna ordenada?",
+    "options": [
+      "COLLECT",
+      "REFRESH",
+      "DELETE ADJACENT DUPLICATES",
+      "CLEAR"
+    ],
+    "answers": [
+      "C"
+    ]
+  },
+  {
+    "question": "¿Qué sentencia se usa para recuperar una lista de posibles entradas para un campo de entrada?",
+    "options": [
+      "AT SELECTION-SCREEN ON VALUE-REQUEST",
+      "AT USER-COMMAND",
+      "INITIALIZATION",
+      "ON F4-REQUEST"
+    ],
+    "answers": [
+      "A"
+    ]
+  }
+  
+];
+
+
+
+
+
+var currentQuestion = 0;
+var score = 0;
+var answered = false;
+
+var questionEl = document.getElementById('question', 'question2');
+var optionsEl = document.getElementById('options','question2');
+var feedbackEl = document.getElementById('feedback','question2');
+var progressEl = document.getElementById('progress','question2');
+var checkBtn = document.getElementById('checkBtn','question2');
+var nextBtn = document.getElementById('nextBtn','question2');
+
+function loadQuestion(index) {
+  // Reset states
+  feedbackEl.textContent = '';
+  answered = false;
+  checkBtn.disabled = false;
+  nextBtn.disabled = true;
+  nextBtn.textContent = 'Siguiente pregunta';
+  // Load question text
+  var q = questions[index];
+  progressEl.textContent = 'Pregunta ' + (index+1) + ' de ' + questions.length;
+  questionEl.textContent = q.question;
+  // Clear previous options
+  optionsEl.innerHTML = '';
+  // Determine if multiple answers
+  var multiple = q.answers.length > 1;
+  for (var i=0; i< q.options.length; i++) {
+    var opt = q.options[i];
+    var optionId = 'opt' + i;
+    // Create label and input
+    var label = document.createElement('label');
+    label.className = 'option-label';
+    var input = document.createElement('input');
+    input.type = multiple ? 'checkbox' : 'radio';
+    input.name = 'question' + index;
+    input.value = String.fromCharCode(65+i); // A=65 in ASCII
+    input.id = optionId;
+    var span = document.createElement('span');
+    span.textContent = opt;
+    label.appendChild(input);
+    label.appendChild(span);
+    optionsEl.appendChild(label);
+  }
+}
+
+function checkAnswer() {
+  if (answered) return;
+  // Determine selected answers
+  var q = questions[currentQuestion];
+  var inputs = optionsEl.querySelectorAll('input');
+  var userAnswers = [];
+  inputs.forEach(function(input) {
+    if (input.checked) {
+      userAnswers.push(input.value);
+    }
+  });
+  // Sort answers for comparison (for multiple selection case)
+  userAnswers.sort();
+  var correctAnswers = q.answers.slice().sort();
+  // Compare arrays
+  var isCorrect = JSON.stringify(userAnswers) === JSON.stringify(correctAnswers);
+  // Mark the options visually
+  inputs.forEach(function(input) {
+    var label = input.parentElement;
+    var val = input.value;
+    if (correctAnswers.includes(val)) {
+      label.classList.add('correct');
+    }
+    if (input.checked && !correctAnswers.includes(val)) {
+      label.classList.add('wrong');
+    }
+    // disable input
+    input.disabled = true;
+  });
+  // Show feedback text
+  if (isCorrect) {
+    feedbackEl.textContent = '¡Correcto!';
+    score++;
+  } else {
+    var correctText = q.answers.join(', ');
+    feedbackEl.textContent = 'Incorrecto. La respuesta correcta es: ' + correctText + '.';
+  }
+  answered = true;
+  checkBtn.disabled = true;
+  nextBtn.disabled = false;
+  // If last question, change next button text to show results
+  if (currentQuestion === questions.length - 1) {
+    nextBtn.textContent = 'Mostrar resultados';
+  }
+}
+
+function showNext() {
+  if (!answered) return;
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    loadQuestion(currentQuestion);
+  } else {
+    // Show results
+    showResults();
+  }
+}
+
+function showResults() {
+  // Hide quiz elements and show final score
+  quizContainer = document.getElementById('quiz-container');
+  quizContainer.innerHTML = '<h2>Resultados</h2><p>Has completado el cuestionario.</p><p>Respuestas correctas: ' + score + ' de ' + questions.length + '.</p><p>Porcentaje de aciertos: ' + Math.round((score/questions.length)*100) + '%.</p>';
+}
+
+// Initialize first question
+loadQuestion(currentQuestion);
+nextBtn.disabled = true;
+
+// Event listeners
+checkBtn.addEventListener('click', checkAnswer);
+nextBtn.addEventListener('click', showNext);
+</script>
+
+</body>
+</html>
